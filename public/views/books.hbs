@@ -1,0 +1,25 @@
+<div class="list-group list-books pt-3">
+  {{#each books}}
+    <a href="/library/book/{{IdEncode}}/bookmarks" class="list-group-item list-group-item-action border-0 border-bottom"
+      data-id-libro-encode="{{IdEncode}}" data-id-libro="{{VolumeID}}" data-titulo-libro="{{BookTitle}}"
+      data-autor-libro="{{Autor}}" data-cant-anotaciones="{{Anotaciones}}" data-cant-subrayados="{{Subrayados}}"
+      data-cant-citas="{{Citas}}" data-cant-palabras="{{Palabras}}" data-cant-definiciones="{{Definiciones}}"
+      data-cant-vocabulario="{{Vocabulario}}" data-cant-marcadores="{{Marcadores}}">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{BookTitle}}</h5>
+      </div>
+      <p class="mb-1"><i class="fad fa-feather-alt pe-1"></i>{{Autor}}</p>
+      <div class="d-flex w-100 justify-content-between">
+        <small title="Resaltes"><i class="fas fa-inbox pe-1"></i>{{Resaltes}} Resaltes</small>
+        <small>
+          <span title="Anotaciones"><i class="fad fa-pencil pe-1"></i>{{Anotaciones}}</span>
+          <span title="Subrayados"><i class="fad fa-highlighter ps-2 pe-1"></i>{{Subrayados}}</span>
+          <span title="Citas"><i class="fad fa-quote-right ps-2 pe-1"></i>{{Citas}}</span>
+          <span title="Vocabulario"><i class="fad fa-book ps-2 pe-1"></i>{{Vocabulario}}</span>
+          <span title="Definiciones"><i class="fad fa-graduation-cap ps-2 pe-1"></i>{{Definiciones}}</span>
+          <span title="Palabras"><i class="fad fa-font ps-2 pe-1"></i>{{Palabras}}</span>
+        </small>
+      </div>
+    </a>
+    {{/each}}
+</div>

@@ -1,0 +1,168 @@
+/* @media(min-width:992px){
+    .item-menu-control-resaltes{
+        width: 141px;
+    }
+
+} */
+
+.fade-in {
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: fadeOut ease 2s;
+    -webkit-animation: fadeOut ease 2s;
+    -moz-animation: fadeOut ease 2s;
+    -o-animation: fadeOut ease 2s;
+    -ms-animation: fadeOut ease 2s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
+}
+
+.start-90{
+  left:90%!important;
+}
+
+.start-75{
+  left:75%!important;
+}
+
+.start-85{
+  left:85%!important;
+}
+
+.start-80{
+  left:80%!important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: white !important;
+  background-color: #1c1c1c;
+}
+
+.nav-item.item-sidemenu:hover{
+  background-color: #d7d7d7;
+}
+
+.container-basic {
+  width: 100%;
+}
+
+.sidevar-panel {
+  flex-shrink: 0;
+  height: 100vh;
+  border-right: solid 1px #dfe1e7;
+}
+
+.list-group.list-books{
+
+  border-width: 0!important;
+  border-radius: 0!important;
+
+}
+
+.list-group-item-action:active{
+
+background-color: #ececec!important;
+}
+
+#settings-navbar{
+  position: sticky;
+  top:100px;
+}

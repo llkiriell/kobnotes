@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+  <link rel="stylesheet" href="../../../libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../css/main.css">
+  <link rel="stylesheet" href="../../../libraries/fontawesome/css/all.min.css">
+</head>
+
+<body>
+  <main class="d-flex flex-nowrap">
+    <aside>
+      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
+        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;"
+          data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"
+          data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item item-sidemenu">
+            <a href="/library/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
+              data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+              data-bcup-haslogintext="no">
+              <i class="fad fa-arrow-alt-from-right"></i>
+            </a>
+          </li>
+          <li class="nav-item item-sidemenu">
+            <a href="/library/book/{{bookAnterior}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="{{bookTitleAnterior}}" aria-label="{{bookTitleAnterior}}" data-bs-original-title="{{bookTitleAnterior}}" data-bcup-haslogintext="no">
+              <i class="fad fa-angle-up"></i>
+            </a>
+          </li>
+          <li class="nav-item item-sidemenu">
+            <a href="/library/book/{{bookNext}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="{{bookTitleNext}}" aria-label="{{bookTitleNext}}" data-bs-original-title="{{bookTitleNext}}" data-bcup-haslogintext="no">
+              <i class="fad fa-angle-down"></i>
+            </a>
+          </li>
+
+        </ul>
+        <div class="dropdown border-top dropend">
+          <a href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
+            <i class="fad fa-user-cog"></i>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Configuración</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxl-9 px-0">
+          <nav class="navbar navbar-expand-lg bg-light sticky-top" style="height: 57px;">
+            <div class="container-fluid">
+              <div id="dpd_filters" class="btn-group">
+                <button class="btn btn-outline-dark border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  data-bs-auto-close="true" aria-expanded="false">
+                  <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
+                </button>
+                <ul id="dpd_filters_menu" class="dropdown-menu">
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
+                        class="fad fa-layer-group pe-2"></i>Todos</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
+                        class="fad fa-pencil pe-2"></i>Anotacion</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
+                        class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
+                        class="fad fa-quote-right pe-2"></i>Citas</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
+                        class="fad fa-book pe-2"></i>Vocabulario</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
+                        class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
+                        class="fad fa-font pe-2"></i>Palabras</a></li>
+                </ul>
+              </div>
+              <div class="d-flex">
+                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1"
+                  data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2">Descendente</span></button>
+                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1"
+                  data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2">Tipo</span></button>
+                <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1"
+                  data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2">Fecha</span></button>
+                <button type="button" class="btn btn-outline-dark border-0"><i
+                    class="fad fa-file-export me-1"></i>Exportar</button>
+              </div>
+
+            </div>
+          </nav>
+          <div class="container-fluid">
+            {{{body}}}
+          </div>
+          <div id="toast_content" class="position-fixed bottom-0 end-0 p-3">
+            <div id="toast_copiar" class="toast align-items-right text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  Copiado!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 border-start">
+          {{!-- <div class="sticky-top">información</div> --}}
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../../../libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="../../../js/bookmarks.js"></script>
+</body>
+</html>
