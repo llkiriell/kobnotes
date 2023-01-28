@@ -1,0 +1,30 @@
+{
+  "name": "kobnotes",
+  "version": "1.0.0",
+  "description": "Export notes kobo eReader.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llkiriell/kobnotes.git"
+  },
+  "keywords": [
+    "kobo",
+    "notes",
+    "ereader"
+  ],
+  "author": "Antonny k.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llkiriell/kobnotes/issues"
+  },
+  "homepage": "https://github.com/llkiriell/kobnotes#readme",
+  "dependencies": {
+    "better-sqlite3": "^8.0.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7",
+    "md5": "^2.3.0"
+  }
+}
