@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-xxl-6 offset-md-3">
+    {{#renderSettingsTemplate dataConfig}}
+    {{/renderSettingsTemplate}}
+
+        <div class="mb-3 row align-items-center">
+          <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+            <div class="pt-1">
+                <i class="fad fa-book" style="font-size: 32px;"></i>
+            </div>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                  <h6 class="mb-0">Diccionario</h6>
+                  <p class="mb-0 opacity-75">Cambia el URL de tu diccionario</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xxl-6">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span>
+              <input type="text" class="form-control" placeholder="dle.rae.es/" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>        
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+            <div class="pt-1">
+                <i class="fad fa-search" style="font-size: 32px;"></i>
+            </div>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                  <h6 class="mb-0">Buscador</h6>
+                  <p class="mb-0 opacity-75">Cambia el URL de tu buscador favorito</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xxl-6">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span>
+              <input type="text" class="form-control" placeholder="www.google.com/search?q=" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 pt-4">
+        <p class="h5">Base de datos</p>
+        <hr>
+        <div class="mb-3 row align-items-center">
+          <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+            <div class="pt-1">
+              <i class="fad fa-upload" style="font-size: 32px;"></i>
+            </div>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                <div>
+                  <h6 class="mb-0">Sube el archivo</h6>
+                  <p class="mb-0 opacity-75">Carga KoboReader.sqlite</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xxl-6">
+            <div class="input-group input-group-sm">
+              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+              <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"><i class="fas fa-file-upload"></i> Cargar</button>
+            </div>    
+          </div>
+          <div class="col-sm-12 col-xxl-12">
+            <div class="d-flex align-items-center">
+              <strong>Cargando libros...</strong>
+              <div class="spinner-border spinner-border-sm ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

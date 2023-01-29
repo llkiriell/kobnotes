@@ -1,0 +1,26 @@
+{
+  "settings":{
+    "dbKoboReader":{
+      "title":"KoboReader.sqlite",
+      "enabled":false
+    },
+    "notionAPI":{
+      "enabled":false
+    },
+    "backup":{
+      "enabled":false
+    },
+    "language" : "es",
+    "bookmarks":[
+      {"type":"notes","active":false},
+      {"type":"highlights","active":false},
+      {"type":"quotes","active":false},
+      {"type":"vocabulary","active":false},
+      {"type":"definitions","active":false},
+      {"type":"words","active":false},
+      {"type":"dogears","active":false}
+    ],
+    "dictionaryURL":"",
+    "searchURL":""
+  }
+}

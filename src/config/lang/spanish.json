@@ -1,0 +1,18 @@
+{
+  "All": "Todos",
+  "Type": "Tipo",
+  "Export": "Exportar",
+  "settings": {
+    "pageTitle": "Configuración",
+    "language": [
+      {
+        "lang": "English",
+        "prefix": "en"
+      },
+      {
+        "lang": "Español",
+        "prefix": "es"
+      }
+    ]
+  }
+}

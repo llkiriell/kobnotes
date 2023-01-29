@@ -31,6 +31,9 @@ public/assets/libraries
 *.sqlite
 *.sqlite-*
 
+# Settings
+config-*.json
+
 # Debug
 .vscode
 

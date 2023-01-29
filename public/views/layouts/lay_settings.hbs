@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+</head>
+<body>
+  <main class="d-flex flex-nowrap">
+    <aside>
+      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
+        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;"
+          data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"
+          data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item item-sidemenu">
+            <a href="/library/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
+              data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+              data-bcup-haslogintext="no">
+              <i class="fad fa-arrow-alt-from-right"></i>
+            </a>
+          </li>
+        </ul>
+        <div class=" border-top dropend">
+          <a href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none"
+            data-bs-toggle="" aria-expanded="false" data-bcup-haslogintext="no">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxl-12 px-0">
+          <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top" style="height: 57px;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">{{titulo}}</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </nav>
+          <div class="container-fluid">
+            {{{body}}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

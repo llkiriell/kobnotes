@@ -166,3 +166,11 @@ background-color: #ececec!important;
   position: sticky;
   top:100px;
 }
+
+.enabled{
+color:#25d725;
+}
+
+.disabled{
+color:#9f9f9f;
+}
