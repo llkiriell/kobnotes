@@ -25,13 +25,13 @@ module.exports = {
     data = "Search =>" + option;
     return data;
   },
-  updateAnyOption: function (option) {
-    data = "Option is edited by => " + option;
-    return data;
-  },
-  updateManyOptions: function (options) {
-    data = options;
-    return data;
+  update: function (config) {
+    try {
+      fs.writeFileSync(".\\src\\config\\settings\\config-" + os.hostname() + '.json',JSON.stringify(config),'utf8');
+      return config;
+    } catch (error) {
+      return '[ERROR] => ' + error.message;
+    }
   },
   deleteConfiguration: function (deleteFileConfig) {
     data = "File was deleted => " + deleteFileConfig;

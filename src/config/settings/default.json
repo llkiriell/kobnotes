@@ -1,5 +1,4 @@
 {
-  "settings":{
     "dbKoboReader":{
       "title":"KoboReader.sqlite",
       "enabled":false
@@ -22,5 +21,4 @@
     ],
     "dictionaryURL":"",
     "searchURL":""
-  }
 }

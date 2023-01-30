@@ -183,6 +183,7 @@ function renderSettingsTemplate(dataConfig){
   let row1 = '';
   let row2 = '';
   let row3 = '';
+  let row4 = '';
 
   row1 +=`<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4 pt-5">
   <div class="col d-flex align-items-start">
@@ -226,7 +227,6 @@ function renderSettingsTemplate(dataConfig){
     </div>
   </div>`;
 
-
   row2 +=`    <div class="row">
   <div class="col-12 pt-4">
     <p class="h5">General</p>
@@ -260,9 +260,7 @@ function renderSettingsTemplate(dataConfig){
         row2 +=`<option value="${selected_lang.settings.language[index].prefix}">${selected_lang.settings.language[index].lang}</option>`;
       } else {
         row2 +=`<option selected value="${selected_lang.settings.language[index].prefix}">${selected_lang.settings.language[index].lang}</option>`;
-
       }
-
     }
   
   row2 +=`            </select>
@@ -376,7 +374,66 @@ function renderSettingsTemplate(dataConfig){
 </div>`;
   }
 
-  return row1 + row2 + row3;
+  row4 += `        <div class="mb-3 row align-items-center">
+  <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+    <div class="pt-1">
+        <i class="fad fa-book" style="font-size: 32px;"></i>
+    </div>
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Diccionario</h6>
+          <p class="mb-0 opacity-75">Cambia el URL de tu diccionario</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-xxl-6">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span>`;
+  
+      if (dataConfig.dictionaryURL == '') {
+        row4 += `<input type="text" class="form-control" placeholder="dle.rae.es/" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">`;
+      } else {
+        row4 += `<input type="text" class="form-control" placeholder="dle.rae.es/" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${dataConfig.dictionaryURL}">`;
+      }
+
+
+  row4 += `</div>
+  </div>
+</div>
+<div class="mb-3 row align-items-center">
+  <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+    <div class="pt-1">
+        <i class="fad fa-search" style="font-size: 32px;"></i>
+    </div>
+    <div class="d-flex gap-2 w-100 justify-content-between">
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Buscador</h6>
+          <p class="mb-0 opacity-75">Cambia el URL de tu buscador favorito</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-xxl-6">
+    <div class="input-group input-group-sm">
+      <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span>`;
+  
+  if (dataConfig.searchURL == '') {
+    row4 += `<input type="text" class="form-control" placeholder="www.google.com/search?q=" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">`;
+  } else {
+    row4 += `<input type="text" class="form-control" placeholder="www.google.com/search?q=" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${dataConfig.searchURL}">`;
+  }
+
+  row4 += `</div>
+    </div>
+  </div>
+  </div>
+  </div>`;
+  return row1 + row2 + row3 + row4;
 }
 // Paths
 app.get("/", (req, res) => {
@@ -440,11 +497,36 @@ app.get("/library/book/:idBook/bookmarks",async (req,res) => {
 });
 
 app.get("/settings",async (req,res) => {
-  configuration.create();
-  let cnfg_local = configuration.read();
-  let settings_local = cnfg_local.settings;
+  // configuration.create();
 
-  console.log(settings_local);
+  let update_settings = {
+      "dbKoboReader":{
+        "title":"KoboReader.sqlite",
+        "enabled":false
+      },
+      "notionAPI":{
+        "enabled":false
+      },
+      "backup":{
+        "enabled":false
+      },
+      "language" : "es",
+      "bookmarks":[
+        {"type":"notes","active":false},
+        {"type":"highlights","active":true},
+        {"type":"quotes","active":true},
+        {"type":"vocabulary","active":true},
+        {"type":"definitions","active":false},
+        {"type":"words","active":true},
+        {"type":"dogears","active":false}
+      ],
+      "dictionaryURL":"texto",
+      "searchURL":"actualizado"
+  };
+  configuration.update(update_settings);
+  let settings_local = configuration.read();
+  // console.log(configuration.read());
+
   res.render("settings", {layout:'lay_settings', titulo: "Configuración", dataConfig:settings_local});
 });
 
