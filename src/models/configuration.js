@@ -16,9 +16,9 @@ module.exports = {
   read: function () {
     try {
       let configuration = JSON.parse(fs.readFileSync(".\\src\\config\\settings\\config-" + os.hostname() + '.json'));
-      return configuration;
+      return {"status":"ok","message":"ok","data":configuration};
     } catch (error) {
-      return '[ERROR] => ' + error.message;
+      return {"status":"error","message":error.message,"data":""};
     }
   },
   searchOption: function (option) {

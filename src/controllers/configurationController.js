@@ -1,7 +1,8 @@
 const configuration = require('../models/configuration');
 
 exports.fetch = (req, res) => {
-  res.json({"data":"lista","status":"ok","message": "lista configuracion"});
+  let config_local = configuration.read().data;
+  res.render("settings", {layout:'lay_settings', titulo: "Configuración", dataConfig:config_local});
 };
 
 exports.create = (req, res) => {

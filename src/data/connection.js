@@ -28,7 +28,7 @@ function extraerAutor(volumeID) {
   }
 }
 
-async function async_traerLibros() {
+function async_traerLibros() {
   try {
     const stmt = db.prepare(`
         SELECT 
@@ -71,7 +71,7 @@ async function async_traerLibros() {
   }
 }
 
-async function async_traerLibroPorId(VolumeID) {
+function async_traerLibroPorId(VolumeID) {
   try {
     const stmt = db.prepare(`
         SELECT 
@@ -109,7 +109,7 @@ async function async_traerLibroPorId(VolumeID) {
   }
 }
 
-async function async_traerResaltes(VolumeID) {
+function async_traerResaltes(VolumeID) {
   try {
     const stmt = db.prepare(`
         SELECT
@@ -133,7 +133,7 @@ async function async_traerResaltes(VolumeID) {
   }
 }
 
-async function async_getBookmarks(VolumeID, filters) {
+function async_getBookmarks(VolumeID, filters) {
   
   let filter_orderBy = '';
   let filter_limit = '';
@@ -201,7 +201,7 @@ async function async_getBookmarks(VolumeID, filters) {
   }
 }
                                                                                           
-async function async_getBooksFiltered(listColumn = false) {
+function async_getBooksFiltered(listColumn = false) {
   let columns_select = "";
   let columns_quantity = 9;
 
@@ -289,7 +289,7 @@ async function async_getBooksFiltered(listColumn = false) {
   }
 }
 
-async function async_traerPalabras(VolumeID) {
+function async_traerPalabras(VolumeID) {
   try {
     const stmt = db.prepare(`
         SELECT *
