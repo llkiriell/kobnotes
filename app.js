@@ -13,8 +13,8 @@ let selected_lang = JSON.parse(lang);
 const express = require("express");
 const expbs = require("express-handlebars");
 const db = require('./src/data/connection');
-const { log } = require('console');
 const app = express();
+
 const hbs = expbs.create({
   extname: ".hbs",
   helpers: {
@@ -440,25 +440,25 @@ app.get("/", (req, res) => {
   res.send('inicio');
 });
 
-app.get("/library/books", async (req, res) => {
-  let rpta = await db.traerLibros();
+app.get("/libraries/books", (req, res) => {
+  let rpta = db.traerLibros();
   res.render("books", { layout: 'lay_books', titulo: "Librería", books: rpta.data });
 });
 
-app.get("/library/book/:idBook/bookmarks",async (req,res) => {
+app.get("/libraries/books/:idBook/bookmarks", (req,res) => {
 
   let book_id = req.params.idBook;
-  let rpta = await db.traerLibroPorId(book_id);
+  let rpta = db.traerLibroPorId(book_id);
 
   let book_data = rpta.data;
   
   //console.log(book_data);
-  let rpta_highlights = await db.traerResaltesLibros(book_id);
+  let rpta_highlights = db.traerResaltesLibros(book_id);
   let highlights_data = rpta_highlights.data;
 
   //traer anterior y siguiente
   // let library_now = await db.getBooksFiltered();
-  let library_now = await db.getBooksFiltered(['VolumeID', 'BookTitle']);
+  let library_now = db.getBooksFiltered(['VolumeID', 'BookTitle']);
 
   let index_book_anterior = 0;
   let index_book_next = library_now.data.length - 1;
@@ -496,7 +496,7 @@ app.get("/library/book/:idBook/bookmarks",async (req,res) => {
   //res.render("resaltados", {titulo: "Resaltados", book: book_data, highlights:highlights_data});
 });
 
-app.get("/settings",async (req,res) => {
+app.get("/settings", (req,res) => {
   // configuration.create();
 
   let update_settings = {

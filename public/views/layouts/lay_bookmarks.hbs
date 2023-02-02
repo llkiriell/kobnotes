@@ -22,21 +22,21 @@
         </a>
         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
           <li class="nav-item item-sidemenu">
-            <a href="/library/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
+            <a href="/libraries/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
               data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
               data-bcup-haslogintext="no">
               <i class="fad fa-arrow-alt-from-right"></i>
             </a>
           </li>
           <li class="nav-item item-sidemenu">
-            <a href="/library/book/{{bookAnterior}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="{{bookTitleAnterior}}" aria-label="{{bookTitleAnterior}}" data-bs-original-title="{{bookTitleAnterior}}" data-bcup-haslogintext="no">
+            <a href="/libraries/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
               <i class="fad fa-angle-up"></i>
             </a>
           </li>
           <li class="nav-item item-sidemenu">
-            <a href="/library/book/{{bookNext}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="{{bookTitleNext}}" aria-label="{{bookTitleNext}}" data-bs-original-title="{{bookTitleNext}}" data-bcup-haslogintext="no">
+            <a href="/libraries/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
               <i class="fad fa-angle-down"></i>
             </a>
           </li>
