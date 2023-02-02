@@ -1,7 +1,12 @@
+const dotenv = require('dotenv');
+if (process.env["NODE_ENV"] !== 'production') {
+  dotenv.config();
+}
+
 const express = require("express");
 const expbs = require("express-handlebars");
 const app = express();
-const __PORT__ = 5000;
+const __PORT__ = process.env["NODE_ENV"] || 5100;
 
 const fs = require('fs');
 let lang = fs.readFileSync(".\\src\\config\\lang\\spanish.json");
@@ -26,8 +31,7 @@ app.set("view engine", ".hbs");
 app.engine(".hbs", hbs.engine);
 app.set("views", "./public/views");
 
-
-//API routes
+//Routes
 app.use("/api/v1", apiV1Router);
 app.use("/libraries", library);
 app.use("/settings",settings);
