@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} | KbNotes</title>
+  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+</head>
+<body>
+  <main class="d-flex flex-nowrap">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxl-4 offset-sm-4 pt-5">
+          <div class="container">
+            <p class="text-center pt-4">
+              <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="75" data-height="75"></span>
+            </p>
+            <p class="h2 text-center">
+              Kobnotes
+            </p>
+          </div>
+        </div>
+        <div class="col-xxl-6 offset-md-3">
+          <div class="row">
+            <div class="col-12 pt-4">
+              <p class="h5">Base de datos</p>
+              <hr>
+              <div class="mb-3 row align-items-center">
+                <div class="col-sm-12 col-xxl-6 d-flex gap-3">
+                  <div class="pt-1">
+                    <i class="fad fa-upload" style="font-size: 32px;"></i>
+                  </div>
+                  <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                      <div>
+                        <h6 class="mb-0">Sube el archivo</h6>
+                        <p class="mb-0 opacity-75">Carga KoboReader.sqlite</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-xxl-6">
+                  <div class="input-group input-group-sm">
+                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  </div>    
+                </div>
+                <div class="col-sm-12 col-xxl-12 d-none">
+                  <div class="d-flex align-items-center">
+                    <strong>Cargando libros...</strong>
+                    <div class="spinner-border spinner-border-sm ms-auto" role="status" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-4 text-end">
+              <button type="button" id="btn_upload" class="btn btn-outline-dark"><i class="fas fa-file-upload pe-2"></i>Cargar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <script src="libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="js/dataload.js"></script>
+</body>
+</html>

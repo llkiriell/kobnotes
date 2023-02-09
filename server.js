@@ -442,7 +442,7 @@ function renderSettingsTemplate(dataConfig){
 }
 
 app.get("/",(req,res) => {
-    res.send('Dashboard');
+    res.render('dataload',{title:'Cargar base de datos'});
 });
 
 app.listen(__PORT__, () => console.log(`Server running in PORT: ${__PORT__}`));
