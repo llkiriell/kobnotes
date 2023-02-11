@@ -16,7 +16,7 @@ function extraerAutor(volumeID) {
 module.exports = {
   getBooks: function () {
     try {
-      const stmt = db.connection.prepare(`
+      const stmt = db.getConnection().prepare(`
           SELECT 
           b.VolumeID,
           (SELECT c.BookTitle from content c WHERE c.BookID LIKE b.VolumeID GROUP BY c.BookTitle) As 'BookTitle',
@@ -54,7 +54,7 @@ module.exports = {
 
   getBookById: function (VolumeID) {
     try {
-      const stmt = db.connection.prepare(`
+      const stmt = db.getConnection().prepare(`
           SELECT 
           b.VolumeID,
           (SELECT c.BookTitle from content c WHERE c.BookID LIKE b.VolumeID GROUP BY c.BookTitle) As 'BookTitle',
@@ -155,7 +155,7 @@ module.exports = {
     }
 
     try {
-      const stmt = db.connection.prepare(`
+      const stmt = db.getConnection().prepare(`
         SELECT
         ${columns_select}
         FROM Bookmark b
@@ -217,7 +217,7 @@ module.exports = {
 
   getBookmarksById: function (VolumeID) {
     try {
-      const stmt = db.connection.prepare(`
+      const stmt = db.getConnection().prepare(`
           SELECT
           b.*,
           c.Title As TitleChapter,
