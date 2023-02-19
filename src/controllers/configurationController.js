@@ -1,8 +1,14 @@
 const configuration = require('../models/configuration');
 
-exports.fetch = (req, res) => {
+exports.show = (req, res) => {
   let config_local = configuration.read().data;
   res.render("settings", {layout:'lay_settings', titulo: "Configuración", dataConfig:config_local});
+};
+
+exports.fetch = (req, res) => {
+  let config_local = configuration.read().data;
+  let rpta = {"data":config_local, "status":"ok","message":"Configuración local"};
+  res.json(rpta);
 };
 
 exports.create = (req, res) => {
@@ -22,5 +28,17 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   let parametros = req.query;
   let rpta = {"data":parametros, "status":"ok","message":"Borrar configuración"};
+  res.json(rpta);
+};
+
+exports.uploadDatabase = (req, res) => {
+  console.log(req.file);
+
+  let res_return = configuration.create();
+  res_return.data.filename = req.file.filename;
+
+  console.log(res_return);
+
+  let rpta = {"resreturn": res_return, "status":"ok","message":"archivo subido correctamente"};
   res.json(rpta);
 };

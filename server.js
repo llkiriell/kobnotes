@@ -6,6 +6,7 @@ if (process.env["NODE_ENV"] !== 'production') {
 const express = require("express");
 const expbs = require("express-handlebars");
 const app = express();
+const configuration = require('./src/models/configuration');
 const __PORT__ = process.env["NODE_ENV"] || 5100;
 
 const fs = require('fs');
@@ -441,8 +442,16 @@ function renderSettingsTemplate(dataConfig){
   return row1 + row2 + row3 + row4;
 }
 
-app.get("/",(req,res) => {
-    res.render('dataload',{title:'Cargar base de datos'});
+app.get("/dataload",(req,res) => {
+  res.render('dataload',{title:'Cargar base de datos'});
 });
 
-app.listen(__PORT__, () => console.log(`Server running in PORT: ${__PORT__}`));
+app.get("/",(req,res) => {
+  if (configuration.exists()) {
+    res.redirect("/libraries/books");
+  } else {
+    res.redirect("/dataload");
+  }
+});
+
+app.listen(__PORT__, () => console.log(`[ OK ] server running localhost:${__PORT__}`));

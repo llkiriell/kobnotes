@@ -7,7 +7,7 @@ const configurationController = require("../controllers/configurationController"
 //Middleware bodyparse => json
 router.use(express.json());
 
-router.get('/', configurationController.fetch);
+router.get('/', configurationController.show);
 
 
 module.exports = router;

@@ -7,10 +7,12 @@ module.exports = {
     try {
       //fs.writeFileSync(filePath, '', 'utf8');
       fs.copyFileSync(".\\src\\config\\settings\\default.json", filePath);
-      return filePath;
+      // return filePath;
+      return {"status":"ok", "message":"configuration created", "data": {"path":filePath}  };
     }
     catch(error) {
-      return '[ERROR] => ' + error.message;
+      return {"status":"error", "message":'[ERROR] => ' + error.message, "data": "" };
+      // return '[ERROR] => ' + error.message;
     }
   },
   read: function () {
@@ -36,5 +38,13 @@ module.exports = {
   deleteConfiguration: function (deleteFileConfig) {
     data = "File was deleted => " + deleteFileConfig;
     return data;
+  },
+  exists: function() {
+    let rpta = this.read().data;
+    if (rpta != '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

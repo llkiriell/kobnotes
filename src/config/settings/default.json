@@ -1,7 +1,7 @@
 {
     "dbKoboReader":{
       "title":"KoboReader.sqlite",
-      "enabled":false
+      "enabled":true
     },
     "notionAPI":{
       "enabled":false
