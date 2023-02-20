@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const toast_upload = new bootstrap.Toast(document.getElementById('toast_upload'));
     const container_toast_upload = document.getElementById('container_toast_upload');
 
-    container_upload.classList.add('d-none');
-    message_upload.classList.remove('d-none');
-
-  //console.log(fileField.files.length);
+    //console.log(fileField.files.length);
     if (fileField.files.length) {
       let database = fileField.files[0];
       
       if (database.name.split(".").pop() == 'sqlite') {
+        container_upload.classList.add('d-none');
+        message_upload.classList.remove('d-none');
         // console.log(database.name.split(".").pop()); //extension
 
         let host = window.location.host;

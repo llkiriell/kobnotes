@@ -4,7 +4,7 @@ const express = require("express");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/files/uploads');
+    cb(null, './src/data');
   },
   filename: function (req, file, cb) {
     cb(null,'KoboReader.sqlite');

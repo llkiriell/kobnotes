@@ -32,12 +32,8 @@ exports.delete = (req, res) => {
 };
 
 exports.uploadDatabase = (req, res) => {
-  console.log(req.file);
-
   let res_return = configuration.create();
   res_return.data.filename = req.file.filename;
-
-  console.log(res_return);
 
   let rpta = {"resreturn": res_return, "status":"ok","message":"archivo subido correctamente"};
   res.json(rpta);

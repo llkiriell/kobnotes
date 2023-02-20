@@ -11,12 +11,12 @@
     },
     "language" : "es",
     "bookmarks":[
-      {"type":"notes","active":false},
-      {"type":"highlights","active":false},
-      {"type":"quotes","active":false},
-      {"type":"vocabulary","active":false},
-      {"type":"definitions","active":false},
-      {"type":"words","active":false},
+      {"type":"notes","active":true},
+      {"type":"highlights","active":true},
+      {"type":"quotes","active":true},
+      {"type":"vocabulary","active":true},
+      {"type":"definitions","active":true},
+      {"type":"words","active":true},
       {"type":"dogears","active":false}
     ],
     "dictionaryURL":"",
