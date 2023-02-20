@@ -1,4 +1,4 @@
-![Kobnotes](https://i.ibb.co/rxfq0f2/logo-kobnotes-x750.png)
+![Kobnotes](./public/assets/images/logo_2407x400.png)
 ---
 Kobnotes is a **simple application for exporting Kobo e-reader notes and bookmarks**, developed in Node.js, using Express.js for back-end management and Bootstrap as the front-end framework. **Its installation is very easy**, it only requires the embedded database of e-reader and that's it.
 
