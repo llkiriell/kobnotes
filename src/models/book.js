@@ -1,5 +1,8 @@
 const db = require('../data/database');
 const md5 = require('md5');
+const NodeCache = require('node-cache');
+
+const localCache = new NodeCache();
 
 function extraerAutor(volumeID) {
   volumeID = volumeID.replace("_", ".")
@@ -12,43 +15,55 @@ function extraerAutor(volumeID) {
     return autor[0];
   }
 }
+//notification set variable in cache
+localCache.on("set", function(key, value){
+  console.log(`\x1b[32m [cache] add '${key}' => localCache \x1b[0m`);
+});
 
 module.exports = {
   getBooks: function () {
-    try {
-      const stmt = db.getConnection().prepare(`
-          SELECT 
-          b.VolumeID,
-          (SELECT c.BookTitle from content c WHERE c.BookID LIKE b.VolumeID GROUP BY c.BookTitle) As 'BookTitle',
-          COUNT(b.VolumeID) As 'Resaltes',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'dogear' AND bs.VolumeID = b.VolumeID) As 'Marcadores',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE (bs."Type" LIKE 'highlight' OR bs."Type" IS NULL) AND bs.VolumeID = b.VolumeID) As 'Subrayados',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation NOT LIKE '>c:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>d:%' AND bs.VolumeID = b.VolumeID) As 'Anotaciones',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation LIKE '>c:%' AND bs.VolumeID = b.VolumeID) As 'Citas',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>p:%' OR bs.Annotation LIKE '>v:%') AND bs.VolumeID = b.VolumeID) As 'Vocabulario',
-          (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation LIKE '>d:%' AND bs.VolumeID = b.VolumeID) As 'Definiciones',
-          (SELECT COUNT(wl.VolumeId) FROM WordList wl
-          WHERE wl.VolumeId LIKE b.VolumeID) As 'Palabras'
-          FROM Bookmark b
-          GROUP BY b.VolumeID
-          ORDER BY COUNT(b.VolumeID) DESC;`);
+    if (localCache.has("books")) {
+      return { "status": "OK", "data": localCache.get('books') };
+    } else {
+      try {
+        const stmt = db.getConnection().prepare(`
+            SELECT 
+            b.VolumeID,
+            (SELECT c.BookTitle from content c WHERE c.BookID LIKE b.VolumeID GROUP BY c.BookTitle) As 'BookTitle',
+            COUNT(b.VolumeID) As 'Bookmarks',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE bs."Type" LIKE 'dogear' AND bs.VolumeID = b.VolumeID) As 'Dogears',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE (bs."Type" LIKE 'highlight' OR bs."Type" IS NULL) AND bs.VolumeID = b.VolumeID) As 'Highlights',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE bs."Type" LIKE 'note' AND bs.Annotation NOT LIKE '>c:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>d:%' AND bs.Annotation NOT LIKE '^:%' AND bs.Annotation NOT LIKE '#:%' AND bs.Annotation NOT LIKE '@:%' AND bs.VolumeID = b.VolumeID) As 'Annotations',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>c:%' OR bs.Annotation LIKE '^:%') AND bs.VolumeID = b.VolumeID) As 'Quotes',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>p:%' OR bs.Annotation LIKE '#:%' OR bs.Annotation LIKE '>v:%') AND bs.VolumeID = b.VolumeID) As 'Vocabulary',
+            (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
+            WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>d:%' OR bs.Annotation LIKE '@:%') AND bs.VolumeID = b.VolumeID) As 'Definitions',
+            (SELECT COUNT(wl.VolumeId) FROM WordList wl
+            WHERE wl.VolumeId LIKE b.VolumeID) As 'Words'
+            FROM Bookmark b
+            GROUP BY b.VolumeID
+            ORDER BY COUNT(b.VolumeID) DESC;
+          `);
+  
+        var rows = stmt.all();
+  
+        for (const bookmark of rows) {
+          bookmark.md5 = md5(bookmark.VolumeID);
+          bookmark.Autor = extraerAutor(bookmark.VolumeID);
+          bookmark.IdEncode = encodeURIComponent(bookmark.VolumeID);
+        }
+        //add the books to the cache
+        localCache.set("books", rows, 0);
 
-      var rows = stmt.all();
-
-      for (const bookmark of rows) {
-        bookmark.md5 = md5(bookmark.VolumeID);
-        bookmark.Autor = extraerAutor(bookmark.VolumeID);
-        bookmark.IdEncode = encodeURIComponent(bookmark.VolumeID);
+        return { "status": "OK", "data": rows };
+      } catch (error) {
+        return { "status": "ERROR", "data": error.message };
       }
-      return { "status": "OK", "data": rows };
-    } catch (error) {
-      return { "status": "ERROR", "data": error.message };
     }
   },
 
@@ -64,13 +79,13 @@ module.exports = {
           (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
           WHERE (bs."Type" LIKE 'highlight' OR bs."Type" IS NULL) AND bs.VolumeID = b.VolumeID) As 'Highlights',
           (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation NOT LIKE '>c:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>v:%' AND bs.Annotation NOT LIKE '>d:%' AND bs.VolumeID = b.VolumeID) As 'Annotations',
+          WHERE bs."Type" LIKE 'note' AND bs.Annotation NOT LIKE '>c:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>p:%' AND bs.Annotation NOT LIKE '>d:%' AND bs.Annotation NOT LIKE '^:%' AND bs.Annotation NOT LIKE '#:%' AND bs.Annotation NOT LIKE '@:%' AND bs.VolumeID = b.VolumeID) As 'Annotations',
           (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation LIKE '>c:%' AND bs.VolumeID = b.VolumeID) As 'Quotes',
+          WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>c:%' OR bs.Annotation LIKE '^:%') AND bs.VolumeID = b.VolumeID) As 'Quotes',
           (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>p:%' OR bs.Annotation LIKE '>v:%') AND bs.VolumeID = b.VolumeID) As 'Vocabulary',
+          WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>p:%' OR bs.Annotation LIKE '#:%' OR bs.Annotation LIKE '>v:%') AND bs.VolumeID = b.VolumeID) As 'Vocabulary',
           (SELECT COUNT(bs.VolumeID) FROM Bookmark bs
-          WHERE bs."Type" LIKE 'note' AND bs.Annotation LIKE '>d:%' AND bs.VolumeID = b.VolumeID) As 'Definitions',
+          WHERE bs."Type" LIKE 'note' AND (bs.Annotation LIKE '>d:%' OR bs.Annotation LIKE '@:%') AND bs.VolumeID = b.VolumeID) As 'Definitions',
           (SELECT COUNT(wl.VolumeId) FROM WordList wl
           WHERE wl.VolumeId LIKE b.VolumeID) As 'Words'
           FROM Bookmark b
@@ -178,8 +193,16 @@ module.exports = {
   },
 
   getBooksBeforeAfter:function (VolumeID){
+    let booksFiltered;
+    //validate books filtered to the cache
+    if (localCache.has("booksFiltered")) {
+      booksFiltered = localCache.get('booksFiltered');
+    } else {
+      booksFiltered = this.getBooksFiltered(['VolumeID', 'BookTitle']);
+      localCache.set("booksFiltered", booksFiltered, 0);
+    }
+
     try {
-      let booksFiltered = this.getBooksFiltered(['VolumeID', 'BookTitle']);
       let book_before = '';
       let book_after = '';
       let index_book_before = 0;
@@ -190,8 +213,6 @@ module.exports = {
       for (let index = 0; index < booksFiltered.data.length; index++) {
   
         if (booksFiltered.data[index].VolumeID == VolumeID) {
-    
-          
           if (index > 0) {
             index_book_before = index - 1;
           }
@@ -205,37 +226,12 @@ module.exports = {
           
           book_title_before = booksFiltered.data[index_book_before].BookTitle;
           book_title_after = booksFiltered.data[index_book_after].BookTitle;
-          
           break;
         }
       }
       return {"status": "ok","message":"ok", "data":[{"Order":"before","VolumeID":book_before,"BookTitle":book_title_before},{"Order":"after","VolumeID":book_after,"BookTitle":book_title_after}]};
     } catch (error) {
       return {"status": "error","message":error.message, "data":""};
-    }
-  },
-
-  getBookmarksById: function (VolumeID) {
-    try {
-      const stmt = db.getConnection().prepare(`
-          SELECT
-          b.*,
-          c.Title As TitleChapter,
-          CASE 
-              WHEN b."Type" LIKE 'note' AND (b.Annotation LIKE '>p:%' OR b.Annotation LIKE '>v:%') THEN 'vocabulary'
-              WHEN b."Type" LIKE 'note' AND b.Annotation LIKE '>d:%' THEN 'definition' 
-              WHEN b."Type" LIKE 'note' AND b.Annotation LIKE '>c:%' THEN 'quote' 
-              WHEN b."Type" IS NULL THEN 'highlight' 
-              ELSE b."Type" END Category
-          FROM Bookmark b
-          INNER JOIN content c ON c.ContentID = b.ContentID
-          WHERE b.VolumeID LIKE ?;`);
-      // ORDER BY b."Type" DESC;`);
-      var rows = stmt.all(VolumeID);
-
-      return { "status": "OK", "data": rows };
-    } catch (error) {
-      return { "status": "ERROR", "data": error.message };
     }
   },
 
@@ -247,5 +243,4 @@ module.exports = {
       return error.message
     }
   }
-
 }

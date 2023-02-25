@@ -66,7 +66,7 @@
           <nav class="navbar navbar-expand-lg bg-light sticky-top" style="height: 57px;">
             <div class="container-fluid">
               <div id="dpd_filters" class="btn-group">
-                <button class="btn btn-outline-dark border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   data-bs-auto-close="true" aria-expanded="false">
                   <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
                 </button>
@@ -103,11 +103,12 @@
           <div class="container-fluid">
             {{{body}}}
           </div>
-          <div id="toast_content" class="position-fixed bottom-0 end-0 p-3">
+          <div id="toast_content" class="position-fixed bottom-0 end-0 p-3" style="z-index: 10000;">
             <div id="toast_copiar" class="toast align-items-right text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="d-flex">
                 <div class="toast-body">
-                  Copiado!
+                  <i class="fad fa-clipboard me-2"></i>¡Copiado!
+                  <p id="toast_message" class="text-truncate" style="max-width: 265px;"></p>
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
@@ -115,7 +116,26 @@
           </div>
         </div>
         <div class="col-xxl-3 border-start">
-          {{!-- <div class="sticky-top">información</div> --}}
+          <div class="sticky-top">
+            <div class="row text-center">
+              <div class="col-12 pt-3 pb-2">
+                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
+                <p class="h4 labrada">Mis Palabras</p>
+              </div>
+              <hr class="mx-auto" style="width: 90%;">
+            </div>
+            {{#showListWords words}}
+            {{/showListWords}}
+            <div id="message_words" class="row text-center pt-4 d-none">
+              <div class="col-12 labrada">
+                <p class="pb-2">No se guardaron palabras de este libro.<br>Puedes revisar el panel de vocabulario</p>
+                <img src="../../../images/book_x128.png" width="60" alt="">
+              </div>
+              <div class="col-12 pt-4">
+                <a href="/libraries/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

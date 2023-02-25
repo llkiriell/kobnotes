@@ -5,6 +5,11 @@
 
 } */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Labrada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+
+
   
 .fade-in {
     animation: fadeIn ease 3s;
@@ -133,8 +138,8 @@
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  color: white !important;
-  background-color: #1c1c1c;
+  color: black !important;
+  background-color: #ffc107;
 }
 
 .nav-item.item-sidemenu:hover{
@@ -176,6 +181,59 @@ color:#25d725;
 color:#9f9f9f;
 }
 
+.h5, h5{
+  line-height: 1.3;
+}
+
+
+.mark, mark{
+  padding: 0 !important;
+}
+
+.text-bg-highlight{
+  color:#1c1c1c;
+  background-color:#5bf3aa;
+}
+.text-bg-definition{
+  color:#1c1c1c;
+  background-color:#cdd9ff;
+}
+.text-bg-note{
+  color:#1c1c1c;
+  background-color:#5bc5f3;
+}
+.text-bg-quote{
+  color:#1c1c1c;
+  background-color:#4cffe2;
+}
+
+.mark-success{
+  background-color:#cdffe7;
+}
+.mark-danger{
+  background-color:#ffcdcd;
+}
+.mark-primary{
+  background-color:#cdeeff;
+}
+.mark-aqua{
+  background-color:#cdfff7;
+}
+.mark-purple{
+  background-color:#cdd9ff;
+}
+
+
 .rajdhani{
   font-family: 'Rajdhani', sans-serif;
 }
+
+.labrada{
+  font-family: 'Labrada', serif;
+}
+
+.kanit{
+  font-family: 'Kanit', sans-serif;
+}
+
+

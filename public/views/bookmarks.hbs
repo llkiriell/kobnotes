@@ -2,24 +2,24 @@
 
   <div id="container-list" class="col-xxl-12">
     <div id="container-book-info" class="col-xxl-12 p-3" data-id-libro="{{book.VolumeID}}">
-      <p id="p_titulo_libro" class="h3"><i class="fad fa-book pe-1"></i>{{book.BookTitle}}</p>
-      <p id="p_autor_libro" class="h5 pb-3"><i class="fad fa-feather-alt pe-1"></i>{{book.Autor}}</p>
+      <p id="p_titulo_libro" class="h3 labrada ">{{book.BookTitle}}</p>
+      <p id="p_autor_libro" class="h5 labrada pb-3"><i class="fad fa-feather-alt pe-1"></i>{{book.Autor}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <small><i class="fas fa-inbox pe-1"></i>{{book.total}} Resaltes</small>
         <small>
-          <span title="Anotaciones"><i class="fad fa-pencil pe-1"></i>{{book.Annotations}}</span>
-          <span title="Subrayados"><i class="fad fa-highlighter ps-2 pe-1"></i>{{book.Highlights}}</span>
-          <span title="Citas"><i class="fad fa-quote-right ps-2 pe-1"></i>{{book.Quotes}}</span>
-          <span title="Vocabulario"><i class="fad fa-book ps-2 pe-1"></i>{{book.Vocabulary}}</span>
-          <span title="Definiciones"><i class="fad fa-graduation-cap ps-2 pe-1"></i>{{book.Definitions}}</span>
-          <span title="Palabras"><i class="fad fa-font ps-2 pe-1"></i>{{book.Words}}</span>
+          <span id="qty_notes" title="Anotaciones"><i class="fad fa-pencil pe-1"></i>{{book.Annotations}}</span>
+          <span id="qty_hightlights" title="Subrayados"><i class="fad fa-highlighter ps-2 pe-1"></i>{{book.Highlights}}</span>
+          <span id="qty_quotes" title="Citas"><i class="fad fa-quote-right ps-2 pe-1"></i>{{book.Quotes}}</span>
+          <span id="qty_vocabulary" title="Vocabulario"><i class="fad fa-book ps-2 pe-1"></i>{{book.Vocabulary}}</span>
+          <span id="qty_definitions" title="Definiciones"><i class="fad fa-graduation-cap ps-2 pe-1"></i>{{book.Definitions}}</span>
+          <span id="qty_words" title="Palabras"><i class="fad fa-font ps-2 pe-1"></i>{{book.Words}}</span>
         </small>
       </div>
       <hr>
     </div>
     <div id="bookmark_list" class="container">
-      {{#eachListHighlights highlights}}
-      {{/eachListHighlights}}
+      {{#eachListBookmarks highlights}}
+      {{/eachListBookmarks}}
     </div>
     <div id="bookmark_message" class="container d-none">
       <p>No hay <span id="bookmark_message_category">elementos</span>.</p>
@@ -35,5 +35,4 @@
       </div>
     </div>
   </div>
-
 </div>

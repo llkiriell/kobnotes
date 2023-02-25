@@ -2,53 +2,54 @@ document.addEventListener('DOMContentLoaded', function () {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     
+    const toast_copy = document.getElementById('toast_copiar');
+    const toast = new bootstrap.Toast(toast_copy);
+    var toast_message = document.getElementById("toast_message");
+
     const dpd_filters = document.getElementById('dpd_filters');
     const span_btn_dpd_filters = document.getElementById('span_btn_dpd_filters');
     const dpd_filters_menu = document.getElementById('dpd_filters_menu');
+    
+    const message_words = document.getElementById('message_words');
+
   
     inicializar_eventos_copiar();
-  
-  
+    showMessageWords();
+
+    toast_copy.addEventListener('hidden.bs.toast', () => {
+      toast_message.innerText = '';
+    })
   
     function inicializar_eventos_copiar() {
       var bookmark_list = document.getElementById("bookmark_list");
-      var botones_copiar = bookmark_list.querySelectorAll('button.btn-copiar');
-  
+      var botones_copiar = bookmark_list.querySelectorAll('button.btn-copy');
+      
       for (let index = 0; index < botones_copiar.length; index++) {
         botones_copiar[index].addEventListener('click', function (e) {
           
           let padre = botones_copiar[index].parentNode.parentNode.parentNode.parentNode;
           
-          let tipo_resalte = padre.classList[3];
+          padre = padre.children[0].firstElementChild;
+
           
-          let hijo = botones_copiar[index].parentNode.parentNode.firstElementChild;
+          let tipo_resalte = padre.classList[3];
+          let hijo = padre.children[1].firstElementChild.firstElementChild;
+
           let titulo_y_auto = '\n[' + document.getElementById('p_titulo_libro').innerText + ' - ' + document.getElementById('p_autor_libro').innerText + ']';
           let texto_copiado = '';
-          
-          if (tipo_resalte == 'cita') {
-            texto_copiado += '«' + hijo.firstElementChild.querySelector('blockquote>p').textContent.trim() + '»';
-            texto_copiado += '\n— ' + hijo.firstElementChild.querySelector('figcaption').textContent.trim()
-          } else if (tipo_resalte == 'palabra') {
-            texto_copiado += hijo.querySelector('h5').textContent.trim();
-          } else {
-            texto_copiado += '«' + hijo.querySelector('h5').textContent.trim() + '»';
-            if (tipo_resalte == 'nota') {
-              texto_copiado += '\n' + hijo.querySelector('p').textContent.trim();
-            }
+
+          if (tipo_resalte == 'highlight' || tipo_resalte == 'note' || tipo_resalte == 'vocabulary') {
+            texto_copiado += '«' + hijo.children[0].textContent.trim() + '»';
+          }else{
+            texto_copiado += hijo.children[0].textContent.trim();
           }
-  
           navigator.clipboard.writeText(texto_copiado + titulo_y_auto);
   
-          const toast = new bootstrap.Toast(document.getElementById('toast_copiar'));
-  
+          toast_message.innerText = texto_copiado;
           toast.show();
-  
-  
-  
         }, false);
       }
     }
-  
   
     for (let index = 0; index < dpd_filters_menu.children.length; index++) {
       //Desactiva el ul seleccionado
@@ -60,13 +61,14 @@ document.addEventListener('DOMContentLoaded', function () {
       //inicializa los marcadores
       const initOrderBookmarks = function (category) {
         let bookmark_list = document.getElementById('bookmark_list');
-        
-        
-  
+
+        // console.log( bookmark_list.children[0]);
+        let bookmark_selected_temp = '';
         for (let index = 0; index < bookmark_list.children.length; index++) {
-  
+          bookmark_selected_temp = bookmark_list.children[index].firstElementChild.firstElementChild;
+
           if (category != 'all') {
-            if (bookmark_list.children[index].dataset.bookmarkCategory == category) {
+            if (bookmark_selected_temp.dataset.bookmarkCategory == category) {
               bookmark_list.children[index].classList.remove('d-none');
             } else {
               bookmark_list.children[index].classList.add('d-none');
@@ -86,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const bookmark_message = document.getElementById('bookmark_message');
         const bookmark_message_category = document.getElementById('bookmark_message_category');
   
-        console.log('Texto de filtro =>',selectedFilter.innerText);
-        console.log('Categoria =>',filterCategory);
+        // console.log('Texto de filtro =>',selectedFilter.innerText);
+        // console.log('Categoria =>',filterCategory);
         
         
         dpd_filters_menu.children[index].children[0].classList.add('active');
@@ -105,6 +107,11 @@ document.addEventListener('DOMContentLoaded', function () {
   
       });
     }
-  
-  
+
+    function showMessageWords() {
+      let qty_words = document.getElementById('qty_words').innerText;
+      if (qty_words < 1) {
+        message_words.classList.remove('d-none');
+      }
+    }
   });
