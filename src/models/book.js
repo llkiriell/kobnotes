@@ -195,11 +195,10 @@ module.exports = {
   getBooksBeforeAfter:function (VolumeID){
     let booksFiltered;
     //validate books filtered to the cache
-    if (localCache.has("booksFiltered")) {
-      booksFiltered = localCache.get('booksFiltered');
+    if (localCache.has("books")) {
+      booksFiltered = localCache.get('books');
     } else {
-      booksFiltered = this.getBooksFiltered(['VolumeID', 'BookTitle']).data;
-      localCache.set("booksFiltered", booksFiltered, 0);
+      booksFiltered = this.getBooks().data;
     }
 
     try {
