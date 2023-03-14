@@ -62,10 +62,11 @@ function renderListBookmarks(aHighlights){
         category = "Cita";
         break;
       case 'vocabulary':
+        let {mainWord,highlightedWord,...remains} = deconstructVocabularyAnnotation(annotation);
         icono = 'fad fa-book';
-        buttons += `<a href="../../vocabulary/${annotation}" class="btn btn-warning btn-sm border-0 me-1" target="_blank"><i class="fad fa-hashtag pe-1"></i>${annotation}</a>`;
+        buttons += `<a href="../../vocabulary/${mainWord}" class="btn btn-warning btn-sm border-0 me-1" target="_blank"><i class="fad fa-hashtag pe-1"></i>${mainWord}</a>`;
         buttons += `<a href="https://www.google.com/search?q=define+${annotation}" class="btn btn-outline-dark btn-sm me-1" target="_blank"><i class="fad fa-search pe-1"></i>Buscar</a>`;
-        text = text.replace(annotation,"<mark>" + annotation + "</mark>");
+        text = text.replace(highlightedWord,"<mark>" + highlightedWord + "</mark>");
         annotation = '';
         textClassCSS = 'labrada';
         categoryClassCSS= "text-bg-dark";
@@ -137,4 +138,20 @@ function renderListWords(aWords) {
 
   list_content_word += `</ul>`;
   return list_content_word;
+}
+
+function deconstructVocabularyAnnotation(annotation) {
+  let deconstructedRes = {isDeconstructed:true,mainWord:null,derivedWord:null,highlightedWord:null};
+  let deconstructedAnnotation = annotation.split(';');
+  
+  if (deconstructedAnnotation.length > 1) {
+    deconstructedRes.mainWord = deconstructedAnnotation[0];
+    deconstructedRes.derivedWord = deconstructedAnnotation[1];
+    deconstructedRes.highlightedWord = deconstructedAnnotation[1];
+  }else{
+    deconstructedRes.isDeconstructed = false;
+    deconstructedRes.mainWord = deconstructedAnnotation[0];
+    deconstructedRes.highlightedWord = deconstructedAnnotation[0];
+  }
+  return deconstructedRes;
 }
