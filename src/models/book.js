@@ -198,7 +198,7 @@ module.exports = {
     if (localCache.has("booksFiltered")) {
       booksFiltered = localCache.get('booksFiltered');
     } else {
-      booksFiltered = this.getBooksFiltered(['VolumeID', 'BookTitle']);
+      booksFiltered = this.getBooksFiltered(['VolumeID', 'BookTitle']).data;
       localCache.set("booksFiltered", booksFiltered, 0);
     }
 
@@ -206,26 +206,26 @@ module.exports = {
       let book_before = '';
       let book_after = '';
       let index_book_before = 0;
-      let index_book_after = booksFiltered.data.length - 1;
+      let index_book_after = booksFiltered.length - 1;
       let book_title_before = 'Anterior';
       let book_title_after = 'Siguiente';
   
-      for (let index = 0; index < booksFiltered.data.length; index++) {
+      for (let index = 0; index < booksFiltered.length; index++) {
   
-        if (booksFiltered.data[index].VolumeID == VolumeID) {
+        if (booksFiltered[index].VolumeID == VolumeID) {
           if (index > 0) {
             index_book_before = index - 1;
           }
     
-          if (index < (booksFiltered.data.length - 1)) {
+          if (index < (booksFiltered.length - 1)) {
             index_book_after = index + 1;
           }
     
-          book_before = encodeURIComponent(booksFiltered.data[index_book_before].VolumeID);
-          book_after = encodeURIComponent(booksFiltered.data[index_book_after].VolumeID);
+          book_before = encodeURIComponent(booksFiltered[index_book_before].VolumeID);
+          book_after = encodeURIComponent(booksFiltered[index_book_after].VolumeID);
           
-          book_title_before = booksFiltered.data[index_book_before].BookTitle;
-          book_title_after = booksFiltered.data[index_book_after].BookTitle;
+          book_title_before = booksFiltered[index_book_before].BookTitle;
+          book_title_after = booksFiltered[index_book_after].BookTitle;
           break;
         }
       }
