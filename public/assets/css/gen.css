@@ -1,0 +1,209 @@
+ /* Reset CSS */
+ /* * {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   box-sizing: border-box;
+ } */
+
+ /* End Reset CSS */
+
+ /* Estilos CSS para el menú sidebar y el resto del código */
+
+ .sidebar {
+   width: 4.5rem;
+   height: 100vh;
+   position: fixed;
+   background-color: #f2f2f2;
+   /* Color de fondo del sidebar */
+   border-right: 1px solid #ddd;
+   /* Borde derecho de 1px */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .sidebar-logo {
+   text-align: center;
+   padding: 1rem 0;
+   /* Agrega 1rem de padding superior e inferior */
+   border-bottom: 1px solid #ccc;
+   /* Borde inferior de 1px */
+   width: inherit;
+   /* Ancho igual al del padre */
+   margin: 0;
+   /* Elimina los márgenes */
+ }
+
+ .sidebar-list {
+   padding: 0;
+   width: inherit;
+   /* Ancho igual al del padre */
+ }
+
+ .sidebar-list li {
+   list-style-type: none;
+   text-align: center;
+   padding: 1rem 0;
+   /* Agrega 1rem de padding superior e inferior */
+   border-bottom: 1px solid #ccc;
+   /* Borde inferior de 1px */
+   width: 100%;
+   /* Ancho del elemento li al 100% */
+ }
+
+ .sidebar-list li a {
+   text-decoration: none;
+   color: inherit;
+   display: block;
+   /* Convertir enlace a un elemento de bloque */
+   padding: 0 1rem;
+   /* Agrega padding horizontal */
+ }
+
+ .sidebar-list li:hover {
+   background-color: lightgray;
+   /* Cambia el color de fondo al pasar el mouse por encima */
+ }
+
+ .sidebar-settings {
+   margin-top: auto;
+   text-align: center;
+   width: inherit;
+   /* Ancho igual al del padre */
+ }
+
+ .sidebar-item {
+   padding: 1rem 0;
+   /* Agrega 1rem de padding superior e inferior */
+   border-top: 1px solid #ccc;
+   /* Borde superior de 1px */
+ }
+
+ /* Estilos CSS para el navbar */
+ .navbar-bottom {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 4rem;
+   background-color: #f2f2f2;
+   display: none;
+   /* Ocultar el navbar en dispositivos de escritorio */
+   justify-content: space-around;
+   align-items: center;
+   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+   /* Sombra en la parte superior */
+ }
+
+ .navbar-list {
+   display: flex;
+   justify-content: space-around;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+ }
+
+ .navbar-list li {
+   list-style-type: none;
+ }
+
+ .navbar-list li a {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ /* Estilos CSS para el navbar-top */
+ .navbar-top {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 4rem;
+   background-color: transparent;
+   display: none;
+   /* Ocultar el navbar-top en dispositivos de escritorio */
+   justify-content: center;
+   align-items: center;
+ }
+
+ .navbar-top-logo {
+   font-size: 1.5rem;
+ }
+
+ /* Estilos CSS para el sidebar-right */
+ .sidebar-right {
+   display: none;
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: 300px;
+   height: 100vh;
+   background-color: #f0f0f0;
+   animation-duration: 0.3s;
+   animation-fill-mode: forwards;
+   animation-name: slideIn;
+ }
+
+
+ .sidebar-right.show-sidebar {
+   animation-name: slideIn;
+ }
+
+ .sidebar-right.hide-sidebar {
+   animation-name: slideOut;
+ }
+
+ @keyframes slideIn {
+   from {
+     transform: translateX(100%);
+   }
+
+   to {
+     transform: translateX(0);
+   }
+ }
+
+ @keyframes slideOut {
+   from {
+     transform: translateX(0);
+   }
+
+   to {
+     transform: translateX(100%);
+   }
+ }
+
+
+
+ .show-sidebar {
+   display: block;
+   transform: translateX(0);
+ }
+
+
+
+
+ /* Estilos CSS para dispositivos móviles */
+ @media (max-width: 768px) {
+   .sidebar {
+     display: none;
+     /* Ocultar el sidebar en dispositivos móviles */
+   }
+
+   .content {
+     margin-left: 0;
+     /* Eliminar el margen izquierdo en dispositivos móviles */
+   }
+
+   .navbar-bottom {
+     display: flex;
+     /* Mostrar el navbar en dispositivos móviles */
+   }
+
+   .navbar-top {
+     display: flex;
+     /* Mostrar el navbar-top en dispositivos móviles */
+   }
+
+ }

@@ -14,12 +14,14 @@ const upload = multer({ storage: storage })
 
 const router = express.Router();
 const configController = require("../controllers/configurationController");
+const notionExportController = require("../controllers/notionExportController");
 
 //Middleware bodyparse => json
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.use(upload.single('database'));
 
+router.get('/export/notion/createPage',notionExportController.createPage);
 router.get('/settings',configController.fetch);
 router.post('/settings',configController.create);
 router.put('/settings',configController.update);

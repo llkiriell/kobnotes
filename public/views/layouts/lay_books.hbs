@@ -10,67 +10,108 @@
 </head>
 <body>
   <main class="d-flex flex-nowrap">
-    <aside>
-      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
-        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
-          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
-          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
-          <span class="visually-hidden">Icon-only</span>
-        </a>
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <li class="nav-item item-sidemenu">
-            <a href="/dashboard" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
-              data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
-              <i class="fad fa-line-columns"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link active text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
-              <i class="fad fa-books"></i>
-            </a>
-          </li>
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/authors" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
-              <i class="fad fa-book-user"></i>
-            </a>
-          </li>
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/vocabulary" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
-              <i class="fad fa-book"></i>
-            </a>
-          </li>
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/favorites" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
-              <i class="fad fa-star"></i>
-            </a>
-          </li>
-
-        </ul>
-        <div class="dropdown border-top dropend">
-          <a href="#"
-            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
-            <i class="fad fa-user-cog"></i>
+    <aside class="sidebar">
+      <div class="sidebar-content d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
+        
+        <div class="sidebar-logo">
+          <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+            <span class="visually-hidden">Icon-only</span>
           </a>
-          <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
-            <li>
-              <hr class="dropdown-divider">
+        </div>
+
+        <div class="sidebar-menu">
+          <ul class="nav nav-pills nav-flush flex-column text-center">
+            <li class="nav-item item-sidemenu">
+              <a href="/dashboard" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
+                data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
+                <i class="fad fa-line-columns"></i>
+              </a>
             </li>
-            <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
+            <li>
+              <a href="#" class="nav-link active text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
+                <i class="fad fa-books"></i>
+              </a>
+            </li>
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/authors" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
+                <i class="fad fa-book-user"></i>
+              </a>
+            </li>
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/vocabulary" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
+                <i class="fad fa-book"></i>
+              </a>
+            </li>
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/favorites" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
+                <i class="fad fa-star"></i>
+              </a>
+            </li>
+
           </ul>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="dropdown border-top dropend">
+            <a href="#"
+              class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
+              <i class="fad fa-user-cog"></i>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </aside>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xxl-9 px-0">
+
+        <div class="col-xxl-9">
+          <div class="row">
+            <div class="col-xxl-12 bg-white py-3 sticky-top" id="title-panel">
+              <div class="container">
+                Librería
+
+              </div>
+            </div>
+            <div class="col-xxl-12">
+              <div class="container-fluid">
+                {{{body}}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 border-start">
+          <div class="sticky-top">
+            <div class="row text-center">
+              <div class="col-12 pt-3 pb-2">
+                <span style="font-size: 2.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
+                <p class="h4 labrada">Información</p>
+              </div>
+              <hr class="mx-auto" style="width: 90%;">
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+        {{!-- <div class="col-xxl-9 px-0">
           <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top" style="height: 57px;">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">{{titulo}}</a>
@@ -94,9 +135,28 @@
             </div>
 
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
+    <div class="navbar-top">
+      <div class="navbar-top-logo">
+          <a href="/" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"></span>
+            <span class="visually-hidden">Icon-only</span>
+          </a>
+      </div>
+    </div>
+    <div class="navbar-bottom">
+      <ul class="navbar-list">
+        <li><a href="#"><i class="fad fa-line-columns"></i></a></li>
+        <li><a href="#"><i class="fad fa-books"></i></a></li>
+        <li><a href="#"><i class="fad fa-book-user"></i></a></li>
+        <li><a href="#"><i class="fad fa-book"></i></a></li>
+        <li><a href="#"><i class="fad fa-star"></i></a></li>
+      </ul>
+    </div>
+
   </main>
   <script src="../libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>

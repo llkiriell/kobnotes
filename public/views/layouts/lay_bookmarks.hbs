@@ -94,7 +94,7 @@
                   data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2">Tipo</span></button>
                 <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1"
                   data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2">Fecha</span></button>
-                <button type="button" class="btn btn-outline-dark border-0"><i
+                <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i
                     class="fad fa-file-export me-1"></i>Exportar</button>
               </div>
 
@@ -133,6 +133,52 @@
               </div>
               <div class="col-12 pt-4">
                 <a href="/libraries/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- Modal -->
+          <div class="modal fade" id="export_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fad fa-file-export me-2"></i>Exportar marcadores</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                  <p class="text-center">Elige el formato o servicio para exportar</p>
+
+
+                  <div class="hstack gap-3 col-md-6 mx-auto">
+                    <div class="bg-light">
+                      <button type="button" id="btn_markdown_export" class="btn btn-outline-dark"><i class="fab fa-markdown me-2" style="font-size: 2em;"></i>Markdown</button>
+                    </div>
+                    <div class="bg-light">
+                      <button type="button" id="btn_notion_export" class="btn btn-outline-dark"><span class="iconify flex-shrink-0 me-2" style="font-size: 2em;" data-icon="simple-icons:notion"></span><span>Notion API</span></button>
+                    </div>
+                    {{!-- <div class="bg-light">
+                      <button type="button" class="btn btn-outline-dark"><i class="fad fa-file-pdf me-2" style="font-size: 2em;"></i>Doc. PDF</button>
+                    </div> --}}
+                  </div>
+
+
+
+                </div>
+                <div class="modal-body mx-3">
+                  <div class="d-flex align-items-center">
+                    <strong>Creando página...</strong>
+                    <div class="spinner-border text-warning ms-auto" role="status" aria-hidden="true"></div>
+                  </div>
+                </div>
+                {{!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> --}}
               </div>
             </div>
           </div>

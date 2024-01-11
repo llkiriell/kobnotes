@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     const message_words = document.getElementById('message_words');
 
-  
     inicializar_eventos_copiar();
     showMessageWords();
 
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
           let tipo_resalte = padre.classList[3];
           let hijo = padre.children[1].firstElementChild.firstElementChild;
 
-          let titulo_y_auto = '\n[' + document.getElementById('p_titulo_libro').innerText + ' - ' + document.getElementById('p_autor_libro').innerText + ']';
+          let titulo_y_auto = '\n[' + document.getElementById('p_title_book').innerText + ' - ' + document.getElementById('p_autor_book').innerText + ']';
           let texto_copiado = '';
 
           if (tipo_resalte == 'highlight' || tipo_resalte == 'note' || tipo_resalte == 'vocabulary') {
@@ -114,4 +113,37 @@ document.addEventListener('DOMContentLoaded', function () {
         message_words.classList.remove('d-none');
       }
     }
+
+    let btn_notion_export = document.getElementById('btn_notion_export');
+
+    btn_notion_export.addEventListener('click', async function (e) {
+
+      let volumeId = document.getElementById('container_book_info').dataset.idLibro;
+      let autor = document.getElementById('p_autor_book').innerText;
+      let title = document.getElementById('p_title_book').innerText;
+
+
+
+      // let rpta_create_page = await createPage(autor,title,volumeId);
+
+      // console.log(rpta_create_page)
+
+    
+console.log('Cargando...');
+    });
   });
+
+  async function createPage(autor,title,volumeId) {
+    try {
+      let paramms = new URLSearchParams({
+        Autor:autor,
+        Title:title,
+        VolumeID:volumeId
+      });
+      paramms = paramms.toString();
+      let res = await fetch(`http://localhost:5100/api/v1/export/notion/createPage?${paramms}`);
+      return res.json();
+    } catch (error) {
+      return {status:'error', message: error.message};
+    }
+  }

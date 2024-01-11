@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+  <link rel="stylesheet" href="../libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../libraries/fontawesome/css/all.min.css">
+</head>
+<body>
+  <main class="d-flex flex-nowrap">
+    <aside>
+      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
+        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item item-sidemenu">
+            <a href="/dashboard" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
+              data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
+              <i class="fad fa-line-columns"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link active text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
+              <i class="fad fa-books"></i>
+            </a>
+          </li>
+          <li class="nav-item item-sidemenu">
+            <a href="/libraries/authors" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
+              <i class="fad fa-book-user"></i>
+            </a>
+          </li>
+          <li class="nav-item item-sidemenu">
+            <a href="/libraries/vocabulary" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
+              <i class="fad fa-book"></i>
+            </a>
+          </li>
+          <li class="nav-item item-sidemenu">
+            <a href="/libraries/favorites" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+              data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
+              <i class="fad fa-star"></i>
+            </a>
+          </li>
+
+        </ul>
+        <div class="dropdown border-top dropend">
+          <a href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
+            <i class="fad fa-user-cog"></i>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
+            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxl-9 px-0">
+          <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top" style="height: 57px;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">{{titulo}}</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </nav>
+          <div class="container-fluid">
+            {{{body}}}
+          </div>
+        </div>
+        <div class="col-xxl-3 border-start">
+          <div class="sticky-top">
+            <div class="row text-center">
+              <div class="col-12 pt-3 pb-2">
+                <span style="font-size: 2.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
+                <p class="h4 labrada">Información</p>
+              </div>
+              <hr class="mx-auto" style="width: 90%;">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="../js/library.js"></script>
+</body>
+</html>
+
+
+{{!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <title>Título de tu sitio web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    /* End Reset CSS */
+
+    /* Estilos CSS para el menú sidebar y el resto del código */
+    .sidebar {
+      width: 4.5rem;
+      height: 100vh;
+      position: fixed;
+      background-color: #f2f2f2;
+      /* Color de fondo del sidebar */
+      border-right: 1px solid #ddd;
+      /* Borde derecho de 1px */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-logo {
+      text-align: center;
+      padding: 1rem 0;
+      /* Agrega 1rem de padding superior e inferior */
+      border-bottom: 1px solid #ccc;
+      /* Borde inferior de 1px */
+      width: inherit;
+      /* Ancho igual al del padre */
+      margin: 0;
+      /* Elimina los márgenes */
+    }
+
+    .sidebar-list {
+      padding: 0;
+      width: inherit;
+      /* Ancho igual al del padre */
+    }
+
+    .sidebar-list li {
+      list-style-type: none;
+      text-align: center;
+      padding: 1rem 0;
+      /* Agrega 1rem de padding superior e inferior */
+      border-bottom: 1px solid #ccc;
+      /* Borde inferior de 1px */
+      width: 100%;
+      /* Ancho del elemento li al 100% */
+    }
+
+    .sidebar-list li a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      /* Convertir enlace a un elemento de bloque */
+      padding: 0 1rem;
+      /* Agrega padding horizontal */
+    }
+
+    .sidebar-list li:hover {
+      background-color: lightgray;
+      /* Cambia el color de fondo al pasar el mouse por encima */
+    }
+
+    .sidebar-settings {
+      margin-top: auto;
+      text-align: center;
+      width: inherit;
+      /* Ancho igual al del padre */
+    }
+
+    .sidebar-item {
+      padding: 1rem 0;
+      /* Agrega 1rem de padding superior e inferior */
+      border-top: 1px solid #ccc;
+      /* Borde superior de 1px */
+    }
+
+    /* Estilos CSS para el navbar */
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4rem;
+      background-color: #f2f2f2;
+      display: none;
+      /* Ocultar el navbar en dispositivos de escritorio */
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+      /* Sombra en la parte superior */
+    }
+
+    .navbar-list {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    .navbar-list li {
+      list-style-type: none;
+    }
+
+    .navbar-list li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Estilos CSS para el navbar-top */
+    .navbar-top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4rem;
+      background-color: transparent;
+      display: none;
+      /* Ocultar el navbar-top en dispositivos de escritorio */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar-top-logo {
+      font-size: 1.5rem;
+    }
+
+    /* Estilos CSS para el sidebar-right */
+    .sidebar-right {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background-color: #f0f0f0;
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+      animation-name: slideIn;
+    }
+
+
+    .sidebar-right.show-sidebar {
+      animation-name: slideIn;
+    }
+
+    .sidebar-right.hide-sidebar {
+      animation-name: slideOut;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+
+
+    .show-sidebar {
+      display: block;
+      transform: translateX(0);
+    }
+
+
+
+
+    /* Estilos CSS para dispositivos móviles */
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+        /* Ocultar el sidebar en dispositivos móviles */
+      }
+
+      .content {
+        margin-left: 0;
+        /* Eliminar el margen izquierdo en dispositivos móviles */
+      }
+
+      .navbar {
+        display: flex;
+        /* Mostrar el navbar en dispositivos móviles */
+      }
+
+      .navbar-top {
+        display: flex;
+        /* Mostrar el navbar-top en dispositivos móviles */
+      }
+
+      /*.sidebar-right {
+        display: block; /* Mostrar el sidebar-right en dispositivos móviles */
+    }
+
+    */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <i class="fas fa-desktop"></i>
+    </div>
+    <ul class="sidebar-list">
+      <li><a href="#"><i class="fas fa-home"></i></a></li>
+      <li><a href="#"><i class="fas fa-user"></i></a></li>
+      <li><a href="#"><i class="fas fa-cog"></i></a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+    </ul>
+    <div class="sidebar-settings">
+      <div class="sidebar-item">
+        <i class="fas fa-cogs"></i>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <!-- Aquí puedes agregar el contenido principal de tu sitio web -->
+    <button id="toggleButton" style="margin-top: 200px;">Mostrar/Ocultar Sidebar</button>
+
+
+
+  </div>
+  <div class="navbar-top">
+    <div class="navbar-top-logo">
+      <i class="fas fa-desktop"></i>
+    </div>
+  </div>
+  <div class="navbar">
+    <ul class="navbar-list">
+      <li><a href="#"><i class="fas fa-home"></i></a></li>
+      <li><a href="#"><i class="fas fa-user"></i></a></li>
+      <li><a href="#"><i class="fas fa-cog"></i></a></li>
+      <li><a href="#"><i class="fas fa-envelope"></i></a></li>
+      <li><a href="#"><i class="fas fa-cogs"></i></a></li>
+    </ul>
+  </div>
+  <div class="sidebar-right">
+    <!-- Contenido del sidebar-right -->
+  </div>
+
+  <script>
+    var sidebar = document.querySelector('.sidebar-right');
+    var toggleButton = document.getElementById('toggleButton');
+
+    var isSidebarVisible = false;
+
+    toggleButton.addEventListener('click', function () {
+      isSidebarVisible = !isSidebarVisible;
+
+      if (isSidebarVisible) {
+        sidebar.classList.remove('hide-sidebar');
+        sidebar.classList.add('show-sidebar');
+      } else {
+        sidebar.classList.add('hide-sidebar');
+      }
+    });
+  </script>
+
+</body>
+
+</html> --}}

@@ -146,14 +146,89 @@
   background-color: #d7d7d7;
 }
 
+.navbar-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #fff;
+  display: none;
+  /* Ocultar el navbar-top en dispositivos de escritorio */
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-top-logo {
+  font-size: 1.5rem;
+}
+
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #f2f2f2;
+  display: none;
+  /* Ocultar el navbar en dispositivos de escritorio */
+  justify-content: space-around;
+  align-items: center;
+  /* box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1); */
+  /* Sombra en la parte superior */
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-list li {
+  list-style-type: none;
+}
+
+.navbar-list li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ /* Estilos CSS para dispositivos móviles */
+ @media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    /* Ocultar el sidebar en dispositivos móviles */
+  }
+  .navbar-top {
+    display: flex;
+    /* Mostrar el navbar-top en dispositivos móviles */
+  }
+
+  .navbar-bottom {
+    display: flex;
+    /* Mostrar el navbar en dispositivos móviles */
+  }
+
+  #title-panel{
+    display: none;
+  }
+
+}
+
 .container-basic {
   width: 100%;
 }
 
-.sidevar-panel {
+.sidevar-panel,.sidebar-content {
   flex-shrink: 0;
   height: 100vh;
   border-right: solid 1px #dfe1e7;
+}
+
+.sidebar-menu{
+  margin-bottom: auto !important;
 }
 
 .list-group.list-books{

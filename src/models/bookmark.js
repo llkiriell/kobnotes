@@ -1,4 +1,6 @@
 const db = require('../data/database');
+const NodeCache = require('node-cache');
+const localCache = new NodeCache();
 
 module.exports = {
   getBookmarksById: function (VolumeID) {
@@ -130,6 +132,8 @@ module.exports = {
     if (vocabularies.length > 0) {
       bookmarksGrouped.groups.push({ type: 'vocabularies', qty: vocabularies.length, data: vocabularies });
     }
+
+    localCache.set(VolumeID, bookmarksGrouped, 0);
 
     return bookmarksGrouped;
   }

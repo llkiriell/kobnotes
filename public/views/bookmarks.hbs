@@ -1,9 +1,9 @@
 <div class="row">
 
   <div id="container-list" class="col-xxl-12">
-    <div id="container-book-info" class="col-xxl-12 p-3" data-id-libro="{{book.VolumeID}}">
-      <p id="p_titulo_libro" class="h3 labrada ">{{book.BookTitle}}</p>
-      <p id="p_autor_libro" class="h5 labrada pb-3"><i class="fad fa-feather-alt pe-1"></i>{{book.Autor}}</p>
+    <div id="container_book_info" class="col-xxl-12 p-3" data-id-libro="{{book.VolumeID}}">
+      <p id="p_title_book" class="h3 labrada ">{{book.BookTitle}}</p>
+      <p id="p_autor_book" class="h5 labrada pb-3"><i class="fad fa-feather-alt pe-1"></i>{{book.Autor}}</p>
       <div class="d-flex justify-content-between align-items-center">
         <small><i class="fas fa-inbox pe-1"></i>{{book.total}} Resaltes</small>
         <small>
@@ -25,7 +25,7 @@
       <p>No hay <span id="bookmark_message_category">elementos</span>.</p>
     </div>
   </div>
-  <div class="col-sm-3 d-none">
+  {{!-- <div class="col-sm-3 d-none">
     <div class="card text-left">
       <div class="card-body">
         <div id="libro" class="text-center" data-id-libro="{{book.VolumeID}}">
@@ -34,5 +34,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
