@@ -15,6 +15,7 @@ let selected_lang = JSON.parse(lang);
 
 const apiV1Router = require("./src/routes/api-v1");
 const library = require("./src/routes/library");
+const libraries = require("./src/routes/libraries");
 const settings = require("./src/routes/settings");
 
 const hbs = expbs.create({
@@ -22,7 +23,7 @@ const hbs = expbs.create({
 });
 
 app.use(express.static(__dirname + "/public/views"));
-app.use(express.static(__dirname + "/public/assets"));
+app.use('/static',express.static(__dirname + "/public/assets"));
 
 app.set("view engine", ".hbs");
 app.engine(".hbs", hbs.engine);
@@ -30,7 +31,8 @@ app.set("views", "./public/views");
 
 //Routes
 app.use("/api/v1", apiV1Router);
-app.use("/libraries", library);
+// app.use("/libraries", library);
+app.use("/libraries", libraries);
 app.use("/settings",settings);
 
 app.get("/dataload",(req,res) => {

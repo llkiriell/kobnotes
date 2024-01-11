@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
-  <link rel="stylesheet" href="../../../libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../css/main.css">
-  <link rel="stylesheet" href="../../../libraries/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
 </head>
 
 <body>
@@ -22,20 +22,20 @@
         </a>
         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
           <li class="nav-item item-sidemenu">
-            <a href="/libraries/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
+            <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
               data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
               data-bcup-haslogintext="no">
               <i class="fad fa-arrow-alt-from-right"></i>
             </a>
           </li>
           <li class="nav-item item-sidemenu">
-            <a href="/libraries/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
               data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
               <i class="fad fa-angle-up"></i>
             </a>
           </li>
           <li class="nav-item item-sidemenu">
-            <a href="/libraries/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
               data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
               <i class="fad fa-angle-down"></i>
             </a>
@@ -129,10 +129,10 @@
             <div id="message_words" class="row text-center pt-4 d-none">
               <div class="col-12 labrada">
                 <p class="pb-2">No se guardaron palabras de este libro.<br>Puedes revisar el panel de vocabulario</p>
-                <img src="../../../images/book_x128.png" width="60" alt="">
+                <img src="/static/images/book_x128.png" width="60" alt="">
               </div>
               <div class="col-12 pt-4">
-                <a href="/libraries/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
+                <a href="/libraries/{{libraryId}}/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
               </div>
             </div>
           </div>
@@ -186,8 +186,8 @@
       </div>
     </div>
   </main>
-  <script src="../../../libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-  <script src="../../../js/bookmarks.js"></script>
+  <script src="/static/js/bookmarks.js"></script>
 </body>
 </html>

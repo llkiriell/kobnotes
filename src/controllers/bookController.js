@@ -5,18 +5,20 @@ let lang = fs.readFileSync(".\\src\\config\\lang\\spanish.json");
 let selected_lang = JSON.parse(lang);
 
 exports.getBooks = (req, res) => {
+  const libraryId = req.params.libraryId;
   let books = book.getBooks();
-  res.render("books", { layout: 'lay_books', titulo: "Librería", books: books.data });
+  res.render("books", { layout: 'lay_books', titulo: `Librería Nro #${libraryId}`, books: books.data, libraryId: libraryId});
 };
 
 exports.getBookmarks = (req, res) => {
+  const libraryId = req.params.libraryId;
   let book_id = req.params.idBook;
   let book_info = book.getBookById(book_id);
   let highlights = bookmark.getBookmarksById(book_id);
   let words =  bookmark.getWordsById(book_id).data;
   let [bookBefore,bookAfter] = book.getBooksBeforeAfter(book_id).data;
   
-  res.render("bookmarks", { layout: 'lay_bookmarks', helpers: { eachListBookmarks: renderListBookmarks, showListWords: renderListWords}, titulo: "Resaltados", lang: selected_lang, book: book_info.data, highlights: highlights.data, bookBefore: bookBefore, bookAfter: bookAfter, words: words });
+  res.render("bookmarks", { layout: 'lay_bookmarks', helpers: { eachListBookmarks: renderListBookmarks, showListWords: renderListWords}, titulo: "Resaltados", lang: selected_lang, libraryId: libraryId, book: book_info.data, highlights: highlights.data, bookBefore: bookBefore, bookAfter: bookAfter, words: words });
 };
 
 exports.getPoks = async (req, res) => {
