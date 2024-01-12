@@ -8,11 +8,99 @@
   <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/main.css">
   <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
+    <style>
+
+    #fondoOscuro {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Negro translúcido */
+      z-index: 999; /* Z-index menor que la columna para que el fondo esté detrás */
+      transition: opacity 0.3s ease-in-out; /* Agregar transición para suavizar la aparición/desaparición */
+    }
+
+    @media (max-width: 768px) {
+      #columnaOculta {
+        height: 100%;
+        display: none;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        right: -75%;
+        width: 75%;
+        background-color: #f8f9fa; /* Fondo de la columna */
+        padding: 20px; /* Espaciado interno */
+        z-index: 1000; /* Z-index para estar encima del contenido */
+        transition: right 0.3s ease-in-out; /* Agregar transición para suavizar el deslizamiento */
+      }
+    }
+  </style>
 </head>
 
 <body>
   <main class="d-flex flex-nowrap">
-    <aside>
+    <aside class="sidebar">
+      <div class="sidebar-content d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
+        
+        <div class="sidebar-logo">
+          <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+            <span class="visually-hidden">Icon-only</span>
+          </a>
+        </div>
+
+        <div class="sidebar-menu">
+          <ul class="nav nav-pills nav-flush flex-column text-center">
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
+                data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+                data-bcup-haslogintext="no">
+                <i class="fad fa-arrow-alt-from-right"></i>
+              </a>
+            </li>
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
+                <i class="fad fa-angle-up"></i>
+              </a>
+            </li>
+            <li class="nav-item item-sidemenu">
+              <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
+                <i class="fad fa-angle-down"></i>
+              </a>
+            </li>
+
+
+          </ul>
+        </div>
+
+
+        <div class="sidebar-bottom">
+          <div class="dropdown border-top dropend">
+            <a href="#"
+              class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
+              <i class="fad fa-user-cog"></i>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
+              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+    {{!-- <aside id="sidebar">
       <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
         <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;"
           data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"
@@ -59,50 +147,75 @@
           </ul>
         </div>
       </div>
-    </aside>
-    <div class="container-fluid">
+    </aside> --}}
+
+
+
+
+
+    <div id="container-main" class="container-fluid">
+
+
+
+
+
       <div class="row">
         <div class="col-xxl-9 px-0">
-          <nav class="navbar navbar-expand-lg bg-light sticky-top" style="height: 57px;">
-            <div class="container-fluid">
-              <div id="dpd_filters" class="btn-group">
-                <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  data-bs-auto-close="true" aria-expanded="false">
-                  <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
-                </button>
-                <ul id="dpd_filters_menu" class="dropdown-menu">
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
-                        class="fad fa-layer-group pe-2"></i>Todos</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
-                        class="fad fa-pencil pe-2"></i>Anotacion</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
-                        class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
-                        class="fad fa-quote-right pe-2"></i>Citas</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
-                        class="fad fa-book pe-2"></i>Vocabulario</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
-                        class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
-                        class="fad fa-font pe-2"></i>Palabras</a></li>
-                </ul>
+          <div id="fondoOscuro"></div>
+        
+          {{!-- <div id="columnaOculta">
+            <!-- Contenido de la columna oculta -->
+            <div class="row text-center">
+              <div class="col-12 pt-3 pb-2">
+                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
+                <p class="h4 labrada">Mis Palabras</p>
               </div>
-              <div class="d-flex">
-                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1"
-                  data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2">Descendente</span></button>
-                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1"
-                  data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2">Tipo</span></button>
-                <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1"
-                  data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2">Fecha</span></button>
-                <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i
-                    class="fad fa-file-export me-1"></i>Exportar</button>
-              </div>
-
+              <hr class="mx-auto" style="width: 90%;">
             </div>
-          </nav>
+            {{#showListWords words}}
+            {{/showListWords}}
+          </div> --}}
+          <div id="cb-navbar-top" class="pt-1 border-bottom">
+            <div class="align-items-center hstack gap-3">
+              <div class="p-2">
+                <div id="dpd_filters" class="btn-group">
+                  <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    data-bs-auto-close="true" aria-expanded="false">
+                    <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
+                  </button>
+                  <ul id="dpd_filters_menu" class="dropdown-menu">
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
+                          class="fad fa-layer-group pe-2"></i>Todos</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
+                          class="fad fa-pencil pe-2"></i>Anotacion</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
+                          class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
+                          class="fad fa-quote-right pe-2"></i>Citas</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
+                          class="fad fa-book pe-2"></i>Vocabulario</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
+                          class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
+                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
+                          class="fad fa-font pe-2"></i>Palabras</a></li>
+                  </ul>
+                </div>
+              
+              </div>
+              <div class="p-2 ms-auto">
+                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
+                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2 d-none d-md-block">Tipo</span></button>
+                <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2 d-none d-md-block">Fecha</span></button>
+                <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
+              </div>
+            </div>
+          </div>
+
           <div class="container-fluid">
             {{{body}}}
           </div>
+
+
           <div id="toast_content" class="position-fixed bottom-0 end-0 p-3" style="z-index: 10000;">
             <div id="toast_copiar" class="toast align-items-right text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
               <div class="d-flex">
@@ -116,7 +229,21 @@
           </div>
         </div>
         <div class="col-xxl-3 border-start">
-          <div class="sticky-top">
+          <div id="columnaOculta">
+            <!-- Contenido de la columna oculta -->
+            <div class="row text-center">
+              <div class="col-12 pt-3 pb-2">
+                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
+                <p class="h4 labrada">Mis Palabras</p>
+              </div>
+              <hr class="mx-auto" style="width: 90%;">
+            </div>
+            {{#showListWords words}}
+            {{/showListWords}}
+          </div>
+
+
+          {{!-- <div class="">
             <div class="row text-center">
               <div class="col-12 pt-3 pb-2">
                 <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
@@ -135,7 +262,8 @@
                 <a href="/libraries/{{libraryId}}/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
               </div>
             </div>
-          </div>
+          </div> --}}
+
         </div>
       </div>
       <div class="row">
@@ -179,15 +307,153 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary">Save changes</button>
                 </div> --}}
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
+
+    <div class="navbar-top border-bottom py-1">
+      <div id="container-nav-top" class="vstack">
+        <div id="navbar-top-logo" class="border-bottom d-none" style="font-size: 1.5rem;">
+          <a href="./libraries" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"></span>
+            <span class="visually-hidden">Icon-only</span>
+          </a>
+        </div>
+        <div id="navbar-top-tools" class="border-bottom pt-1">
+          <div class="align-items-center hstack gap-3">
+            <div class="p-2">
+              <div id="dpd_filters" class="btn-group">
+                <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  data-bs-auto-close="true" aria-expanded="false">
+                  <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
+                </button>
+                <ul id="dpd_filters_menu" class="dropdown-menu">
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
+                        class="fad fa-layer-group pe-2"></i>Todos</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
+                        class="fad fa-pencil pe-2"></i>Anotacion</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
+                        class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
+                        class="fad fa-quote-right pe-2"></i>Citas</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
+                        class="fad fa-book pe-2"></i>Vocabulario</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
+                        class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
+                        class="fad fa-font pe-2"></i>Palabras</a></li>
+                </ul>
+              </div>
+            
+            </div>
+            <div class="p-2 ms-auto">
+              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
+              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2 d-none d-md-block">Tipo</span></button>
+              <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2 d-none d-md-block">Fecha</span></button>
+              <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
+            </div>
+          </div>
+        </div>
+        <div id="navbar-top-book-info" class="d-none">
+          <div class="container text-center">
+            <p class="h5 labrada">Ideas y Creencias</p>
+            <span class="labrada"><i class="fad fa-feather-alt me-1"></i>Ortega Y Gasset</span>
+          
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+    <div class="navbar-bottom">
+
+
+
+
+      <ul class="navbar-list">
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries"><i class="fad fa-line-columns"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books"><i class="fad fa-arrow-alt-from-right"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks"><i class="fad fad fa-angle-up"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks"><i class="fad fa-angle-down"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a id="mostrarOcultarBtn"><i class="fad fa-font"></i></a></div></li>
+      </ul>
+      
+    </div>
+
+
+
+    
   </main>
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <script src="/static/js/bookmarks.js"></script>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Al hacer clic en el botón de mostrar/ocultar
+  
+      document.getElementById("mostrarOcultarBtn").addEventListener("click", function() {
+        // Mostrar la columna oculta con una animación de deslizamiento
+        
+
+        document.body.style.overflow = "hidden";
+
+
+        document.getElementById("fondoOscuro").style.display = "block";
+
+        document.getElementById("columnaOculta").style.display = "block";
+        setTimeout(function () {
+          document.getElementById("columnaOculta").style.right = "0";
+        }, 50);
+
+
+
+
+        
+      });
+
+      // Al hacer clic en el botón de cerrar
+      document.getElementById("fondoOscuro").addEventListener("click", function() {
+        // Ocultar la columna oculta con una animación de deslizamiento
+        document.body.style.overflow = 'auto';
+
+
+
+        document.getElementById("columnaOculta").style.right = "-75%";
+          document.getElementById("fondoOscuro").style.display = "none";
+        setTimeout(function () {
+          document.getElementById("columnaOculta").scrollTop = 0;
+          document.getElementById("columnaOculta").style.display = "none";
+        }, 300);
+      });
+
+      window.addEventListener('scroll', function(e) {
+          
+
+         
+
+
+
+
+      });
+
+
+    });
+  </script>
+
 </body>
 </html>

@@ -12,12 +12,11 @@ exports.getBooks = (req, res) => {
 
 exports.getBookmarks = (req, res) => {
   const libraryId = req.params.libraryId;
-  let book_id = req.params.idBook;
+  let book_id = decodeURIComponent(req.params.idBook);
   let book_info = book.getBookById(book_id);
   let highlights = bookmark.getBookmarksById(book_id);
   let words =  bookmark.getWordsById(book_id).data;
   let [bookBefore,bookAfter] = book.getBooksBeforeAfter(book_id).data;
-  
   res.render("bookmarks", { layout: 'lay_bookmarks', helpers: { eachListBookmarks: renderListBookmarks, showListWords: renderListWords}, titulo: "Resaltados", lang: selected_lang, libraryId: libraryId, book: book_info.data, highlights: highlights.data, bookBefore: bookBefore, bookAfter: bookAfter, words: words });
 };
 
@@ -88,7 +87,7 @@ function renderListBookmarks(aHighlights){
 
     list_content_highlights += `
       <div class="vstack gap-1">
-        <div class="bg-light">
+        <div class="">
           <div class="row pt-2 bookmark ${aHighlights[index].Category}" data-bookmark-category="${aHighlights[index].Category}">
             <div class="col-xxl-1 text-center">
               <div class="col-xxl-12 text-center">
@@ -113,11 +112,11 @@ function renderListBookmarks(aHighlights){
             </div>
           </div>
         </div>
-        <div class="bg-light">
+        <div class="">
           <div class="hstack gap-3">
-            <div class="bg-light"><span class="badge rounded-pill ${categoryClassCSS}">${category}</span></div>
-            <div class="bg-light border ms-auto"></div>
-            <div class="bg-light">${buttons}<button type="button" class="btn btn-outline-dark btn-sm btn-copy" data-bcup-haslogintext="no"><i class="fad fa-copy pe-2"></i>Copiar</button>
+            <div class=""><span class="badge rounded-pill ${categoryClassCSS}">${category}</span></div>
+            <div class=" border ms-auto"></div>
+            <div class="">${buttons}<button type="button" class="btn btn-outline-dark btn-sm btn-copy" data-bcup-haslogintext="no"><i class="fad fa-copy pe-2"></i>Copiar</button>
             </div>
           </div>
         </div>

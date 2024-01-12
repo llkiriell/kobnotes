@@ -151,7 +151,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 4rem;
+  /* height: 4rem; */
   background-color: #fff;
   display: none;
   /* Ocultar el navbar-top en dispositivos de escritorio */
@@ -317,4 +317,17 @@ color:#9f9f9f;
 
 .navbar-blist-item.active{
   background-color: #ffc107;
+}
+
+ /* Estilos CSS para dispositivos móviles */
+ @media (max-width: 768px) {
+
+  #container-body{
+   margin-top: 4em;
+  }
+
+}
+
+body.no-scroll {
+  overflow-y: hidden;
 }

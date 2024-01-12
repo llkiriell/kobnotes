@@ -9,8 +9,8 @@ router.use(express.json());
 
 // Manejar la ruta principal de /libraries
 router.get('/', (req, res) => {
-  // Aquí puedes renderizar la vista principal de bibliotecas o realizar otras acciones
-  res.send('Página principal de bibliotecas');
+
+  res.render("libraries", { titulo: `Librerías`});
 });
 
 // Manejar rutas específicas de bibliotecas, por ejemplo, /libraries/1
