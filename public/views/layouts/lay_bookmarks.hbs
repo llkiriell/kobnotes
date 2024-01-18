@@ -6,177 +6,410 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
   <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/main.css">
+  {{!-- <link rel="stylesheet" href="/static/css/main.css"> --}}
   <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
-    <style>
 
-    #fondoOscuro {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Negro translúcido */
-      z-index: 999; /* Z-index menor que la columna para que el fondo esté detrás */
-      transition: opacity 0.3s ease-in-out; /* Agregar transición para suavizar la aparición/desaparición */
-    }
-
-    @media (max-width: 768px) {
-      #columnaOculta {
-        height: 100%;
-        display: none;
-        overflow-y: auto;
-        position: fixed;
-        top: 0;
-        right: -75%;
-        width: 75%;
-        background-color: #f8f9fa; /* Fondo de la columna */
-        padding: 20px; /* Espaciado interno */
-        z-index: 1000; /* Z-index para estar encima del contenido */
-        transition: right 0.3s ease-in-out; /* Agregar transición para suavizar el deslizamiento */
-      }
-    }
-  </style>
 </head>
+<style>
 
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Labrada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+
+
+
+
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+}
+
+.labrada{
+  font-family: 'Labrada', serif;
+}
+
+.side-menu {
+  background-color: #fff;
+  height: 100vh;
+  width: 4.5em;
+  border-right: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-logo {
+  height: 4em;
+  width: 4.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.side-menu-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-options li {
+  height: 4em;
+  width: 4.5em;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-menu-options li a{
+  padding: 1em 1.7em;
+}
+
+.side-menu-bottom {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+
+/* CONTENTS */
+
+.content-data,
+.content-info {
+
+  height: 100vh;
+}
+
+.content-data {
+  width: 75%;
+  /*height: 100%;*/
+  padding-left: 4.5em;
+  border-right: 1px solid #ccc;
+  overflow-y: scroll;
+}
+
+.content-info {
+  width: 25%;
+  overflow-y: scroll;
+}
+
+.navbar-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #f2f2f2;
+  display: none;
+  /* Ocultar el navbar en dispositivos de escritorio */
+  justify-content: space-around;
+  align-items: center;
+  /* box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1); */
+  /* Sombra en la parte superior */
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-list li {
+  list-style-type: none;
+}
+
+.navbar-list li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+.content-data-topbar {
+  height: 4em;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  /*padding-left: 1em;*/
+  border-bottom: 1px solid #ccc;
+
+}
+
+.content-data-page{
+  background-color: #fff;
+}
+
+.text-data-head h5,
+.text-data-head h6 {
+  margin: 0;
+}
+
+.title-topbar h6 {
+  margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+
+  body{
+    overflow: visible;
+  }
+
+  .content-data {
+  height: 100%;
+  padding-left: 0;
+  padding-bottom: 6em;
+  border-right: 0;
+  }
+
+  .side-menu {
+    display: none;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  .content-data,
+  .content-info {
+    width: 100%;
+  }
+  
+  .content-info{
+    display: none;
+  }
+
+  .content-data-topbar, .content-data-head {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+  }
+
+  .content-data-head {
+    margin-top: 4em;
+  }
+
+  .content-data-page {
+  padding-bottom: 6em;
+  padding-top: 4.5em;
+  }
+
+  .navbar-bottom {
+    display: flex;
+    /* Mostrar el navbar en dispositivos móviles */
+  }
+}
+
+.enabled{
+color:#25d725;
+}
+
+.disabled{
+color:#9f9f9f;
+}
+
+.h5, h5{
+  line-height: 1.3;
+}
+
+
+.mark, mark{
+  padding: 0 !important;
+}
+
+.text-bg-highlight{
+  color:#1c1c1c;
+  background-color:#5bf3aa;
+}
+.text-bg-definition{
+  color:#1c1c1c;
+  background-color:#cdd9ff;
+}
+.text-bg-note{
+  color:#1c1c1c;
+  background-color:#5bc5f3;
+}
+.text-bg-quote{
+  color:#1c1c1c;
+  background-color:#4cffe2;
+}
+
+.mark-success{
+  background-color:#cdffe7;
+}
+.mark-danger{
+  background-color:#ffcdcd;
+}
+.mark-primary{
+  background-color:#cdeeff;
+}
+.mark-aqua{
+  background-color:#cdfff7;
+}
+.mark-purple{
+  background-color:#cdd9ff;
+}
+
+.rajdhani{
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.labrada{
+  font-family: 'Labrada', serif;
+}
+
+.kanit{
+  font-family: 'Kanit', sans-serif;
+}
+
+#mc-bookmarks-bg-dark {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Negro translúcido */
+  z-index: 999; /* Z-index menor que la columna para que el fondo esté detrás */
+  transition: opacity 0.3s ease-in-out; /* Agregar transición para suavizar la aparición/desaparición */
+}
+
+@media (max-width: 768px) {
+  #mc-words-list {
+    height: 100%;
+    display: none;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: -75%;
+    width: 75%;
+    background-color: #f8f9fa; /* Fondo de la columna */
+    padding: 20px; /* Espaciado interno */
+    z-index: 1000; /* Z-index para estar encima del contenido */
+    transition: right 0.3s ease-in-out; /* Agregar transición para suavizar el deslizamiento */
+  }
+}
+
+.navbar-blist-item{
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-blist-item:active {
+  color: black;
+  background-color: #ffc107; /* Color de fondo al hacer clic */
+} 
+
+
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; 
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .logo-loading {
+            background-color: #ffc107; 
+            /*width: 80px;*/
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: breath 1.5s infinite; 
+        }
+
+        @keyframes breath {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+</style>
 <body>
-  <main class="d-flex flex-nowrap">
-    <aside class="sidebar">
-      <div class="sidebar-content d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
-        
-        <div class="sidebar-logo">
-          <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
-            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
-            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
-            <span class="visually-hidden">Icon-only</span>
-          </a>
-        </div>
 
-        <div class="sidebar-menu">
-          <ul class="nav nav-pills nav-flush flex-column text-center">
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
-                data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
-                data-bcup-haslogintext="no">
-                <i class="fad fa-arrow-alt-from-right"></i>
-              </a>
-            </li>
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
-                <i class="fad fa-angle-up"></i>
-              </a>
-            </li>
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
-                <i class="fad fa-angle-down"></i>
-              </a>
-            </li>
-
-
-          </ul>
-        </div>
-
-
-        <div class="sidebar-bottom">
-          <div class="dropdown border-top dropend">
-            <a href="#"
-              class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-              data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
-              <i class="fad fa-user-cog"></i>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
-            </ul>
-          </div>
-        </div>
+  <div id="loading_screen" class="loading-screen">
+    <div class="loader">
+      <div class="logo-loading">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="34" height="34" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="34" data-height="34"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
       </div>
-    </aside>
-    {{!-- <aside id="sidebar">
-      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
-        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;"
-          data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"
-          data-bcup-haslogintext="no">
+      <p class="description-loading h5 labrada">Cargando...</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="side-menu">
+      <div class="side-menu-logo">
+        <a href="/" class="link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
           <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
           <span class="visually-hidden">Icon-only</span>
         </a>
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
-              data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
-              data-bcup-haslogintext="no">
-              <i class="fad fa-arrow-alt-from-right"></i>
-            </a>
-          </li>
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
-              <i class="fad fa-angle-up"></i>
-            </a>
-          </li>
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
-              <i class="fad fa-angle-down"></i>
-            </a>
-          </li>
 
-        </ul>
-        <div class="dropdown border-top dropend">
-          <a href="#"
-            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
-            <i class="fad fa-user-cog"></i>
-          </a>
-          <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Configuración</a></li>
-          </ul>
-        </div>
       </div>
-    </aside> --}}
+      <ul class="side-menu-options">
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 rounded-0" aria-current="page"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+            data-bcup-haslogintext="no">
+            <i class="fad fa-arrow-alt-from-right"></i>
+          </a>
+        </li>
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
+            <i class="fad fa-angle-up"></i>
+          </a>
+        </li>
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
+            <i class="fad fa-angle-down"></i>
+          </a>
+        </li>
 
+      </ul>
+      <div class="side-menu-bottom">
+        <i class="fas fa-cog"></i>
+      </div>
+    </div>
 
+    <div class="content-data">
+      <!-- Contenido de content-data -->
+      <div class="content-data-topbar">
+        <div class="container-fluid">
 
-
-
-    <div id="container-main" class="container-fluid">
-
-
-
-
-
-      <div class="row">
-        <div class="col-xxl-9 px-0">
-          <div id="fondoOscuro"></div>
-        
-          {{!-- <div id="columnaOculta">
-            <!-- Contenido de la columna oculta -->
-            <div class="row text-center">
-              <div class="col-12 pt-3 pb-2">
-                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
-                <p class="h4 labrada">Mis Palabras</p>
-              </div>
-              <hr class="mx-auto" style="width: 90%;">
-            </div>
-            {{#showListWords words}}
-            {{/showListWords}}
-          </div> --}}
-          <div id="cb-navbar-top" class="pt-1 border-bottom">
-            <div class="align-items-center hstack gap-3">
+            <div id="mcbntop-item-tools" class="align-items-center hstack gap-3">
               <div class="p-2">
                 <div id="dpd_filters" class="btn-group">
                   <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -209,12 +442,27 @@
                 <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
               </div>
             </div>
-          </div>
+        </div>
 
-          <div class="container-fluid">
+
+      </div>
+      
+      <div class="content-data-head">
+
+        <div id="mcbntop-item-book-info" class="py-2 px-4 d-none" style="background-color: #ffcd39;">
+          <p class="h5 labrada mb-1">{{book.BookTitle}}</p>
+          <span class="labrada"><i class="fad fa-feather-alt me-1"></i>{{book.Autor}}</span>
+        </div>
+
+      </div>
+
+      <div class="content-data-page">
+        <!-- Contenido de content-data-page -->
+
+
+          <div id="mc-bbookmarks-list" class="container-fluid">
             {{{body}}}
           </div>
-
 
           <div id="toast_content" class="position-fixed bottom-0 end-0 p-3" style="z-index: 10000;">
             <div id="toast_copiar" class="toast align-items-right text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -227,48 +475,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xxl-3 border-start">
-          <div id="columnaOculta">
-            <!-- Contenido de la columna oculta -->
-            <div class="row text-center">
-              <div class="col-12 pt-3 pb-2">
-                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
-                <p class="h4 labrada">Mis Palabras</p>
-              </div>
-              <hr class="mx-auto" style="width: 90%;">
-            </div>
-            {{#showListWords words}}
-            {{/showListWords}}
-          </div>
 
-
-          {{!-- <div class="">
-            <div class="row text-center">
-              <div class="col-12 pt-3 pb-2">
-                <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
-                <p class="h4 labrada">Mis Palabras</p>
-              </div>
-              <hr class="mx-auto" style="width: 90%;">
-            </div>
-            {{#showListWords words}}
-            {{/showListWords}}
-            <div id="message_words" class="row text-center pt-4 d-none">
-              <div class="col-12 labrada">
-                <p class="pb-2">No se guardaron palabras de este libro.<br>Puedes revisar el panel de vocabulario</p>
-                <img src="/static/images/book_x128.png" width="60" alt="">
-              </div>
-              <div class="col-12 pt-4">
-                <a href="/libraries/{{libraryId}}/vocabulary" class="btn btn-warning border-0 me-1" target="_blank" data-bcup-haslogintext="no"><i class="fad fa-book pe-2"></i>Vocabulario</a>
-              </div>
-            </div>
-          </div> --}}
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <!-- Modal -->
           <div class="modal fade" id="export_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -289,9 +496,7 @@
                     <div class="bg-light">
                       <button type="button" id="btn_notion_export" class="btn btn-outline-dark"><span class="iconify flex-shrink-0 me-2" style="font-size: 2em;" data-icon="simple-icons:notion"></span><span>Notion API</span></button>
                     </div>
-                    {{!-- <div class="bg-light">
-                      <button type="button" class="btn btn-outline-dark"><i class="fad fa-file-pdf me-2" style="font-size: 2em;"></i>Doc. PDF</button>
-                    </div> --}}
+
                   </div>
 
 
@@ -303,86 +508,37 @@
                     <div class="spinner-border text-warning ms-auto" role="status" aria-hidden="true"></div>
                   </div>
                 </div>
-                {{!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
+
 
               </div>
             </div>
           </div>
+
+
+      </div>  
+        
+    </div>
+    <div id="mc-bookmarks-bg-dark"></div>
+    <div id="mc-words-list" class="content-info container">
+      <!-- Contenido de la columna oculta -->
+      <div class="row text-center">
+        <div class="col-12 pt-3 pb-2">
+          <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
+          <p class="h4 labrada">Mis Palabras</p>
         </div>
+        <hr class="mx-auto" style="width: 90%;">
       </div>
+      {{#showListWords words}}
+      {{/showListWords}}
     </div>
 
 
+  
 
 
 
-    <div class="navbar-top border-bottom py-1">
-      <div id="container-nav-top" class="vstack">
-        <div id="navbar-top-logo" class="border-bottom d-none" style="font-size: 1.5rem;">
-          <a href="./libraries" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
-            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
-            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"></span>
-            <span class="visually-hidden">Icon-only</span>
-          </a>
-        </div>
-        <div id="navbar-top-tools" class="border-bottom pt-1">
-          <div class="align-items-center hstack gap-3">
-            <div class="p-2">
-              <div id="dpd_filters" class="btn-group">
-                <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  data-bs-auto-close="true" aria-expanded="false">
-                  <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
-                </button>
-                <ul id="dpd_filters_menu" class="dropdown-menu">
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
-                        class="fad fa-layer-group pe-2"></i>Todos</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
-                        class="fad fa-pencil pe-2"></i>Anotacion</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
-                        class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
-                        class="fad fa-quote-right pe-2"></i>Citas</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
-                        class="fad fa-book pe-2"></i>Vocabulario</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
-                        class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
-                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
-                        class="fad fa-font pe-2"></i>Palabras</a></li>
-                </ul>
-              </div>
-            
-            </div>
-            <div class="p-2 ms-auto">
-              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
-              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2 d-none d-md-block">Tipo</span></button>
-              <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2 d-none d-md-block">Fecha</span></button>
-              <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
-            </div>
-          </div>
-        </div>
-        <div id="navbar-top-book-info" class="d-none">
-          <div class="container text-center">
-            <p class="h5 labrada">Ideas y Creencias</p>
-            <span class="labrada"><i class="fad fa-feather-alt me-1"></i>Ortega Y Gasset</span>
-          
-
-          </div>
-        </div>
-
-
-
-
-      </div>
-    </div>
 
     <div class="navbar-bottom">
-
-
-
-
       <ul class="navbar-list">
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries"><i class="fad fa-line-columns"></i></a></div></li>
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books"><i class="fad fa-arrow-alt-from-right"></i></a></div></li>
@@ -400,8 +556,8 @@
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <script src="/static/js/bookmarks.js"></script>
-  
 
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Al hacer clic en el botón de mostrar/ocultar
@@ -413,47 +569,61 @@
         document.body.style.overflow = "hidden";
 
 
-        document.getElementById("fondoOscuro").style.display = "block";
+        document.getElementById("mc-bookmarks-bg-dark").style.display = "block";
 
-        document.getElementById("columnaOculta").style.display = "block";
+        document.getElementById("mc-words-list").style.display = "block";
         setTimeout(function () {
-          document.getElementById("columnaOculta").style.right = "0";
+          document.getElementById("mc-words-list").style.right = "0";
         }, 50);
 
-
-
-
-        
       });
 
       // Al hacer clic en el botón de cerrar
-      document.getElementById("fondoOscuro").addEventListener("click", function() {
+      document.getElementById("mc-bookmarks-bg-dark").addEventListener("click", function() {
         // Ocultar la columna oculta con una animación de deslizamiento
         document.body.style.overflow = 'auto';
 
-
-
-        document.getElementById("columnaOculta").style.right = "-75%";
-          document.getElementById("fondoOscuro").style.display = "none";
+        document.getElementById("mc-words-list").style.right = "-75%";
+          document.getElementById("mc-bookmarks-bg-dark").style.display = "none";
         setTimeout(function () {
-          document.getElementById("columnaOculta").scrollTop = 0;
-          document.getElementById("columnaOculta").style.display = "none";
+          document.getElementById("mc-words-list").scrollTop = 0;
+          document.getElementById("mc-words-list").style.display = "none";
         }, 300);
       });
 
-      window.addEventListener('scroll', function(e) {
-          
+var cajaInfoBook = document.getElementById('mcbntop-item-book-info');
+  var hrCajaInfoBook = document.getElementById('book_hr');
+  
+        // Función para manejar el evento de scroll
+  function handleScroll() {
+    var rect = hrCajaInfoBook.getBoundingClientRect();
 
-         
+    // Si el hr es visible en la pantalla, mostrar la caja
+    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+
+
+      cajaInfoBook.classList.add('d-none');
 
 
 
 
-      });
+
+    } else {
+      // Si el hr no es visible, ocultar la caja
+      cajaInfoBook.classList.remove('d-none');
+    }
+
+
+
+
+
+  }
+
+  window.addEventListener('scroll', handleScroll);
 
 
     });
   </script>
-
+  
 </body>
 </html>
