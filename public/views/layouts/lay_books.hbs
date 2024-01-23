@@ -5,11 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
   <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/css/general.css">
   <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
 </head>
+<style>
+ .side-menu-options>li.active {
+    color: black !important;
+    background-color: #ffc107;
+  }
+
+  .side-menu-options>li:not(.active):hover{
+    background-color: #dee2e6;
+  }
+</style>
 <body>
-  <main class="d-flex flex-nowrap">
+
+  <div id="loading_screen" class="loading-screen d-none">
+    <div class="loader">
+      <div class="logo-loading">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="34" height="34" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="34" data-height="34"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+      </div>
+      <p class="description-loading h5 labrada">Cargando...</p>
+    </div>
+  </div>
+
+  <main class="">
+    <div class="side-menu">
+      <div class="side-menu-logo">
+        <a href="/" class="link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+      </div>
+      <ul class="side-menu-options">
+        <li>
+          <a href="/libraries" class="text-reset py-3 rounded-0" aria-current="page" data-bs-toggle="tooltip"
+            data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
+            <i class="fad fa-line-columns"></i>
+          </a>
+        </li>
+        <li class="active">
+          <a href="#" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
+            <i class="fad fa-books"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/authors" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
+            <i class="fad fa-book-user"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/vocabulary" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
+            <i class="fad fa-book"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/favorites" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
+            <i class="fad fa-star"></i>
+          </a>
+        </li>
+
+      </ul>
+      <div class="side-menu-bottom">
+        <i class="fas fa-cog"></i>
+      </div>
+    </div>
+
+    <div class="content-data">
+      <div class="content-data-topbar">
+        <div class="container-fluid">
+          <div id="mcbntop-item-tools" class="align-items-center hstack gap-1">
+            <div class="d-xxl-none">          
+              <a href="/" class="d-block pt-2 px-3 link-dark text-decoration-none text-center" style="height: 54px;" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+              </a>
+            </div>
+            <div class="p-2"><p class="h4 labrada">Libros</p></div>
+            <div class="p-2 ms-auto">
+              <button id="" class="btn btn-warning">
+                <i class="fa-duotone fa-magnifying-glass"></i>
+              </button>
+            
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="content-data-page">
+        <div class="container-fluid">
+          {{{body}}}
+        </div>
+      </div>
+    </div>
+    
+    <div id="mc-bookmarks-bg-dark"></div>
+
+    <div class="content-info">
+
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12 pt-3 pb-2">
+            <span style="font-size: 2.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
+            <p class="h4 labrada">Información</p>
+          </div>
+          <hr class="mx-auto" style="width: 90%;">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="navbar-bottom">
+      <ul class="navbar-list">
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/../../libraries"><i class="fad fa-line-columns"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center active"><a href="#"><i class="fad fa-books"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-book-user"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-book"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-star"></i></a></div></li>      </ul>
+    </div>
+  </main>
+
+
+
+
+  <main class="d-flex flex-nowrap d-none">
     <aside class="sidebar">
       <div class="sidebar-content d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
         
@@ -24,7 +149,7 @@
         <div class="sidebar-menu">
           <ul class="nav nav-pills nav-flush flex-column text-center">
             <li class="nav-item item-sidemenu">
-              <a href="/dashboard" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
+              <a href="/libraries" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
                 data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
                 <i class="fad fa-line-columns"></i>
               </a>
@@ -77,16 +202,28 @@
         </div>
       </div>
     </aside>
-    <div id="container-body" class="container-fluid">
-
+    <div id="" class="container-fluid">
       <div class="row">
         <div class="col-xxl-9">
 
           <div class="row">
-            <div class="col-12">
-              <div id="cb-navbar-top" class="pt-1 border-bottom">
-                <div class="align-items-center hstack gap-3">
+            <div class="col-12 border-bottom bg-white sticky-top">
+              <div id="cb-navbar-top" class="pt-1" style="z-index: 1;">
+                <div class="align-items-center hstack gap-1">
+                  <div class="">          
+                    <a href="/" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
+                      data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+                      <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"></span>
+                      <span class="visually-hidden">Icon-only</span>
+                    </a>
+                  </div>
                   <div class="p-2"><p class="h4 labrada">Libros</p></div>
+                  <div class="p-2 ms-auto">
+                    <button class="btn btn-warning">
+                      <i class="fa-duotone fa-magnifying-glass"></i>
+                    </button>
+                  
+                  </div>
                   {{!-- <div class="p-2 ms-auto ms-md-0">
                     <button class="btn btn-warning">
                       <i class="fad fa-plus"></i>
@@ -126,6 +263,10 @@
 
 
 
+
+
+
+
       {{!-- <div class="row">
 
         <div class="col-xxl-9">
@@ -158,7 +299,7 @@
       </div> --}}
       
     </div>
-    <div class="navbar-top border-bottom py-1">
+    <div class="navbar-top border-bottom py-1 d-none">
       <div class="navbar-top-logo">
           <a href="/" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
@@ -181,5 +322,24 @@
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <script src="/static/js/library.js"></script>
+  <script>
+    document.getElementById('compartirBoton').addEventListener('click', async () => {
+        try {
+            if (navigator.share) {
+                // Utiliza la Web Share API si está disponible
+                await navigator.share({
+                    title: 'Título del recurso compartido',
+                    text: 'Descripción del recurso compartido',
+                    url: 'https://tuurl.com'
+                });
+            } else {
+                // Si la Web Share API no está disponible, proporciona una alternativa o mensaje
+                alert('La función de compartir no está disponible en este navegador.');
+            }
+        } catch (error) {
+            console.error('Error al intentar compartir:', error);
+        }
+    });
+  </script>
 </body>
 </html>

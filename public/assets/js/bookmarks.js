@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    document.getElementById("loading_screen").classList.add("d-none");
+
+
+    
+
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     
@@ -13,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const message_words = document.getElementById('message_words');
 
     inicializar_eventos_copiar();
-    showMessageWords();
+    //showMessageWords();
 
     toast_copy.addEventListener('hidden.bs.toast', () => {
       toast_message.innerText = '';

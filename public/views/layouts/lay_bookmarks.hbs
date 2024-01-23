@@ -6,355 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
   <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
-  {{!-- <link rel="stylesheet" href="/static/css/main.css"> --}}
+  <link rel="stylesheet" href="/static/css/general.css">
   <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
 
 </head>
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Labrada&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
-
-
-
-
-
-
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-}
-
-main {
-  display: flex;
-}
-
-.labrada{
-  font-family: 'Labrada', serif;
-}
-
-.side-menu {
-  background-color: #fff;
-  height: 100vh;
-  width: 4.5em;
-  border-right: 1px solid #ccc;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.side-menu-logo {
-  height: 4em;
-  width: 4.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-}
-
-.side-menu-options {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.side-menu-options li {
-  height: 4em;
-  width: 4.5em;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.side-menu-options li a{
-  padding: 1em 1.7em;
-}
-
-.side-menu-bottom {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4em;
-  width: 100%;
-  border-top: 1px solid #ccc;
-}
-
-/* CONTENTS */
-
-.content-data,
-.content-info {
-
-  height: 100vh;
-}
-
-.content-data {
-  width: 75%;
-  /*height: 100%;*/
-  padding-left: 4.5em;
-  border-right: 1px solid #ccc;
-  overflow-y: scroll;
-}
-
-.content-info {
-  width: 25%;
-  overflow-y: scroll;
-}
-
-.navbar-bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 4rem;
-  background-color: #f2f2f2;
-  display: none;
-  /* Ocultar el navbar en dispositivos de escritorio */
-  justify-content: space-around;
-  align-items: center;
-  /* box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1); */
-  /* Sombra en la parte superior */
-}
-
-.navbar-list {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar-list li {
-  list-style-type: none;
-}
-
-.navbar-list li a {
-  text-decoration: none;
-  color: inherit;
-}
-
-
-
-.content-data-topbar {
-  height: 4em;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  /*padding-left: 1em;*/
-  border-bottom: 1px solid #ccc;
-
-}
-
-.content-data-page{
-  background-color: #fff;
-}
-
-.text-data-head h5,
-.text-data-head h6 {
-  margin: 0;
-}
-
-.title-topbar h6 {
-  margin: 0;
-}
-
-
-
-@media (max-width: 768px) {
-
-  body{
-    overflow: visible;
-  }
-
-  .content-data {
-  height: 100%;
-  padding-left: 0;
-  padding-bottom: 6em;
-  border-right: 0;
-  }
-
-  .side-menu {
-    display: none;
-  }
-
-  main {
-    flex-direction: column;
-  }
-
-  .content-data,
-  .content-info {
-    width: 100%;
-  }
-  
-  .content-info{
-    display: none;
-  }
-
-  .content-data-topbar, .content-data-head {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1;
-  }
-
-  .content-data-head {
-    margin-top: 4em;
-  }
-
-  .content-data-page {
-  padding-bottom: 6em;
-  padding-top: 4.5em;
-  }
-
-  .navbar-bottom {
-    display: flex;
-    /* Mostrar el navbar en dispositivos móviles */
-  }
-}
-
-.enabled{
-color:#25d725;
-}
-
-.disabled{
-color:#9f9f9f;
-}
-
-.h5, h5{
-  line-height: 1.3;
-}
-
-
-.mark, mark{
-  padding: 0 !important;
-}
-
-.text-bg-highlight{
-  color:#1c1c1c;
-  background-color:#5bf3aa;
-}
-.text-bg-definition{
-  color:#1c1c1c;
-  background-color:#cdd9ff;
-}
-.text-bg-note{
-  color:#1c1c1c;
-  background-color:#5bc5f3;
-}
-.text-bg-quote{
-  color:#1c1c1c;
-  background-color:#4cffe2;
-}
-
-.mark-success{
-  background-color:#cdffe7;
-}
-.mark-danger{
-  background-color:#ffcdcd;
-}
-.mark-primary{
-  background-color:#cdeeff;
-}
-.mark-aqua{
-  background-color:#cdfff7;
-}
-.mark-purple{
-  background-color:#cdd9ff;
-}
-
-.rajdhani{
-  font-family: 'Rajdhani', sans-serif;
-}
-
-.labrada{
-  font-family: 'Labrada', serif;
-}
-
-.kanit{
-  font-family: 'Kanit', sans-serif;
-}
-
-#mc-bookmarks-bg-dark {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Negro translúcido */
-  z-index: 999; /* Z-index menor que la columna para que el fondo esté detrás */
-  transition: opacity 0.3s ease-in-out; /* Agregar transición para suavizar la aparición/desaparición */
-}
-
-@media (max-width: 768px) {
-  #mc-words-list {
-    height: 100%;
-    display: none;
-    overflow-y: auto;
-    position: fixed;
-    top: 0;
-    right: -75%;
-    width: 75%;
-    background-color: #f8f9fa; /* Fondo de la columna */
-    padding: 20px; /* Espaciado interno */
-    z-index: 1000; /* Z-index para estar encima del contenido */
-    transition: right 0.3s ease-in-out; /* Agregar transición para suavizar el deslizamiento */
-  }
-}
-
-.navbar-blist-item{
-  width: 50px;
-  height: 50px;
-}
-
-.navbar-blist-item:active {
-  color: black;
-  background-color: #ffc107; /* Color de fondo al hacer clic */
-} 
-
-
-
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; 
-        }
-
-        .loader {
-            text-align: center;
-        }
-
-        .logo-loading {
-            background-color: #ffc107; 
-            /*width: 80px;*/
-            height: 90px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            animation: breath 1.5s infinite; 
-        }
-
-        @keyframes breath {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
 </style>
 <body>
 
@@ -379,20 +35,20 @@ color:#9f9f9f;
       </div>
       <ul class="side-menu-options">
         <li class="">
-          <a href="/libraries/{{libraryId}}/books" class="nav-link text-reset py-3 rounded-0" aria-current="page"
+          <a href="/libraries/{{libraryId}}/books" class="text-reset py-3 rounded-0" aria-current="page"
             data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
             data-bcup-haslogintext="no">
             <i class="fad fa-arrow-alt-from-right"></i>
           </a>
         </li>
         <li class="">
-          <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="nav-link text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+          <a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-title="{{bookBefore.BookTitle}}" aria-label="{{bookBefore.BookTitle}}" data-bs-original-title="{{bookBefore.BookTitle}}" data-bcup-haslogintext="no">
             <i class="fad fa-angle-up"></i>
           </a>
         </li>
         <li class="">
-          <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="nav-link text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+          <a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks" id="book_next" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-title="{{bookAfter.BookTitle}}" aria-label="{{bookAfter.BookTitle}}" data-bs-original-title="{{bookAfter.BookTitle}}" data-bcup-haslogintext="no">
             <i class="fad fa-angle-down"></i>
           </a>
@@ -405,46 +61,43 @@ color:#9f9f9f;
     </div>
 
     <div class="content-data">
-      <!-- Contenido de content-data -->
+
       <div class="content-data-topbar">
         <div class="container-fluid">
-
-            <div id="mcbntop-item-tools" class="align-items-center hstack gap-3">
-              <div class="p-2">
-                <div id="dpd_filters" class="btn-group">
-                  <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    data-bs-auto-close="true" aria-expanded="false">
-                    <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
-                  </button>
-                  <ul id="dpd_filters_menu" class="dropdown-menu">
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
-                          class="fad fa-layer-group pe-2"></i>Todos</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
-                          class="fad fa-pencil pe-2"></i>Anotacion</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
-                          class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
-                          class="fad fa-quote-right pe-2"></i>Citas</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
-                          class="fad fa-book pe-2"></i>Vocabulario</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
-                          class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
-                    <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
-                          class="fad fa-font pe-2"></i>Palabras</a></li>
-                  </ul>
-                </div>
-              
+          <div id="mcbntop-item-tools" class="align-items-center hstack gap-3">
+            <div class="p-2">
+              <div id="dpd_filters" class="btn-group">
+                <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  data-bs-auto-close="true" aria-expanded="false">
+                  <i class="fad fa-filter me-1"></i><span id="span_btn_dpd_filters">{{lang.All}}</span>
+                </button>
+                <ul id="dpd_filters_menu" class="dropdown-menu">
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center active" data-filter-category="all" href="#"><i
+                        class="fad fa-layer-group pe-2"></i>Todos</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="note" href="#"><i
+                        class="fad fa-pencil pe-2"></i>Anotacion</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="highlight" href="#"><i
+                        class="fad fa-highlighter pe-2"></i>Subrayados</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="quote" href="#"><i
+                        class="fad fa-quote-right pe-2"></i>Citas</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="vocabulary" href="#"><i
+                        class="fad fa-book pe-2"></i>Vocabulario</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="definition" href="#"><i
+                        class="fad fa-graduation-cap pe-1"></i>Definiciones</a></li>
+                  <li><a class="dropdown-item d-flex gap-2 align-items-center" data-filter-category="word" href="#"><i
+                        class="fad fa-font pe-2"></i>Palabras</a></li>
+                </ul>
               </div>
-              <div class="p-2 ms-auto">
-                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
-                <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2 d-none d-md-block">Tipo</span></button>
-                <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2 d-none d-md-block">Fecha</span></button>
-                <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
-              </div>
+            
             </div>
+            <div class="p-2 ms-auto">
+              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
+              <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fas fa-sort-shapes-up"></i><span class="ps-2 d-none d-md-block">Tipo</span></button>
+              <button type="button" id="btn_orden_fecha" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-calendar-day"></i><span class="ps-2 d-none d-md-block">Fecha</span></button>
+              <button type="button" id="btn_export" class="btn btn-outline-dark border-0" data-bs-toggle="modal" data-bs-target="#export_modal"><i class="fad fa-file-export me-1"></i><span class="d-none d-md-block">Exportar</span></button>
+            </div>
+          </div>
         </div>
-
-
       </div>
       
       <div class="content-data-head">
@@ -457,8 +110,6 @@ color:#9f9f9f;
       </div>
 
       <div class="content-data-page">
-        <!-- Contenido de content-data-page -->
-
 
           <div id="mc-bbookmarks-list" class="container-fluid">
             {{{body}}}
@@ -519,23 +170,19 @@ color:#9f9f9f;
         
     </div>
     <div id="mc-bookmarks-bg-dark"></div>
-    <div id="mc-words-list" class="content-info container">
-      <!-- Contenido de la columna oculta -->
-      <div class="row text-center">
-        <div class="col-12 pt-3 pb-2">
-          <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
-          <p class="h4 labrada">Mis Palabras</p>
+    <div id="mc-words-list" class="content-info">
+      <div class="container-fluid">
+        <div class="row text-center">
+          <div class="col-12 pt-3 pb-2">
+            <span style="font-size: 2.5em;"><i class="fad fa-font rounded-circle" style="background-color: #ffc107; padding: .3em .4em .3em .4em;"></i></span>
+            <p class="h4 labrada">Mis Palabras</p>
+          </div>
+          <hr class="mx-auto" style="width: 90%;">
         </div>
-        <hr class="mx-auto" style="width: 90%;">
+        {{#showListWords words}}
+        {{/showListWords}}
       </div>
-      {{#showListWords words}}
-      {{/showListWords}}
     </div>
-
-
-  
-
-
 
 
     <div class="navbar-bottom">

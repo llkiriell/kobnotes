@@ -331,3 +331,9 @@ color:#9f9f9f;
 body.no-scroll {
   overflow-y: hidden;
 }
+
+.navbar-blist-item:active {
+  color: black;
+  background-color: #ffc107; /* Color de fondo al hacer clic */
+} 
+

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
+    <style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  display: flex;
+}
+
+.side-menu {
+  background-color: #fff;
+  height: 100vh;
+  width: 4.5em;
+  border-right: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-logo {
+  height: 4.5em;
+  width: 4.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.side-menu-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-options li {
+  height: 4.5em;
+  width: 4.5em;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-menu-bottom {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.5em;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+
+/* CONTENTS */
+
+.content-data,
+.content-info {
+
+  height: 100vh;
+}
+
+.content-data {
+  width: 75%;
+  padding-left: 4.5em;
+}
+
+.content-info {
+  width: 25%;
+}
+
+.bottom-menu {
+  background-color: yellow;
+  height: 4rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+
+.content-data-topbar {
+  height: 4.5em;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-data-head {
+  height: 3.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-data-page{
+  background-color: #fff;
+}
+
+.text-data-head h5,
+.text-data-head h6 {
+  margin: 0;
+}
+
+.title-topbar h6 {
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+
+  .content-data {
+
+  padding-left: 0;
+  padding-bottom: 6em;
+  }
+
+
+  .side-menu {
+    display: none;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  .content-data,
+  .content-info {
+    width: 100%;
+  }
+  
+  .content-info{
+    display: none;
+  }
+
+  .content-data-topbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+  }
+
+  .content-data-head {
+    padding-top: 4.5em;
+    background-color: darkgoldenrod;
+  }
+
+  .content-data-page {
+  padding-bottom: 6em;
+  }
+
+
+    .bottom-menu {
+    display: block;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <main>
+
+
+  <div class="side-menu">
+    <div class="side-menu-logo">
+      <i class="fas fa-cube"></i>
+    </div>
+    <ul class="side-menu-options">
+      <li><i class="fas fa-home"></i></li>
+      <li><i class="fas fa-envelope"></i></li>
+      <li><i class="fas fa-user"></i></li>
+      <!-- Agrega más elementos según tus necesidades -->
+    </ul>
+    <div class="side-menu-bottom">
+      <i class="fas fa-cog"></i>
+    </div>
+  </div>
+
+  <div class="content-data">
+    <!-- Contenido de content-data -->
+    <div class="content-data-topbar">
+      <div class="title-topbar">
+        <h6><i class="fas fa-book"></i> Título</h6>
+      </div>
+    </div>
+    
+    <div class="content-data-head">
+      <div class="text-data-head">
+        <h5>Nombre de libro</h5>
+        <h6><i class="fas fa-feather"></i> Autor</h6>
+      </div>
+    </div>
+
+    <div class="content-data-page">
+      <!-- Contenido de content-data-page -->
+      <p><span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut repellat aliquam suscipit molestiae laborum aliquid quisquam, dolore exercitationem nostrum, tempore cum ab quasi est. Vero tenetur quaerat dolor quia quasi?</span><span>Saepe nulla quo blanditiis. Quia ratione nihil nostrum modi, officiis ea optio et unde nesciunt ad reiciendis dolore impedit, delectus adipisci iure eos! Repellat praesentium eveniet fugiat consequatur. Odio, accusantium.</span><span>Ipsam, debitis dolore voluptate sit perferendis deserunt perspiciatis repudiandae alias a unde ea explicabo eius! Itaque vitae qui suscipit cupiditate eius illo, tenetur exercitationem ab dolor, quas sed vero enim.</span><span>Ratione facilis voluptates nostrum amet molestiae voluptatibus illo ut autem in commodi. Doloribus rerum asperiores ratione facere dicta, tenetur eum architecto, enim illo nemo dolore suscipit commodi aliquid ducimus voluptatum!</span><span>Iste, quam vel, cupiditate iusto minima vero accusantium dolores porro quae consequuntur cumque excepturi perspiciatis eius ea maxime quasi facilis a illo voluptatem exercitationem? Qui laboriosam atque perferendis quam maxime?</span><span>Sunt pariatur error quas odio quaerat quis maiores minima vero blanditiis, magnam quo tempora amet voluptatum ipsa dolores qui magni provident id cupiditate ratione neque? Eligendi quidem corrupti itaque ducimus.</span><span>Fuga quis tenetur eum pariatur repudiandae libero sit quisquam vel, perspiciatis, tempora ullam quae nesciunt at perferendis totam enim magni, numquam maiores. Vitae consequuntur, debitis alias expedita rerum quos repellendus.</span><span>Est repellendus consequuntur sunt voluptatum. Nostrum laborum maiores cumque dolore nemo sit ut quibusdam aut dicta animi. Esse, dolores inventore accusantium magni sunt, officiis atque autem temporibus delectus maiores perspiciatis.</span><span>Voluptas, minus quia. Praesentium eos fugiat ipsa, dolor quae vero, id voluptates excepturi dolore laboriosam distinctio ullam eveniet mollitia magnam quis optio quaerat omnis, ratione cumque itaque velit voluptas officia?</span><span>Laborum velit, molestias repudiandae, maiores inventore laudantium eos debitis delectus nisi optio ipsam incidunt placeat facilis, enim quo consectetur culpa dignissimos pariatur. Facere officia maxime voluptatibus fuga, odit saepe maiores!</span><span>Aspernatur ab enim id sit ullam incidunt, repellendus iste quas qui laborum expedita odio itaque voluptatem sunt dolores voluptatum, nihil ex impedit molestiae ea. Et eos impedit tempora libero nobis.</span><span>Ex dolorum animi quibusdam quasi nam, in ut rem eaque quia nisi! Voluptates dicta, quae vitae eum ea impedit nisi, optio aliquam repudiandae soluta vero nihil quam, ut earum ipsam!</span><span>Ullam voluptatem assumenda similique provident ipsum omnis unde! Sed, voluptatum aliquam! Atque quibusdam voluptates aperiam ab sunt laudantium sapiente at, accusantium assumenda et odit voluptas, expedita excepturi odio. Quas, eligendi.</span><span>Iste, quo totam consectetur porro vero facilis ipsam eligendi, sequi minus eaque earum! Dolore eaque, placeat quo expedita nulla numquam ipsam adipisci officia at nihil nostrum! Ducimus, voluptatem. Blanditiis, dicta!</span><span>Distinctio aliquam, perspiciatis dicta soluta odio nobis commodi? Aperiam veritatis omnis labore amet quia dolorum possimus fuga odit ipsum, similique temporibus necessitatibus numquam maiores consequatur natus saepe quibusdam vero libero.</span></p>
+
+    </div>  
+      
+  </div>
+
+  <div class="content-info">
+    <!-- Contenido de content-info -->
+    titulo
+  </div>
+
+  <div class="bottom-menu">
+    <!-- Contenido de bottom-menu -->
+  </div>
+    
+  </main>
+  <script>
+  
+  </script>
+
+</body>
+</html>
