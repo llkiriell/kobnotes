@@ -5,177 +5,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
   <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/css/general.css">
   <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
-
 </head>
+<style>
+  .content-data{
+    width: 100% !important;
+  }
+
+  .card{
+    border-color: #dee2e6 !important;
+  }
+
+  @media (min-width: 769px) {
+    .card{
+      width: 350px !important;
+    }
+  }
+</style>
 <body>
-  <main class="d-flex flex-nowrap">
 
-    <aside class="sidebar">
-      <div class="sidebar-content d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
-        
-        <div class="sidebar-logo">
-          <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
-            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
-            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
-            <span class="visually-hidden">Icon-only</span>
+  <main>
+    <div class="side-menu">
+      <div class="side-menu-logo">
+        <a href="/" class="link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+      </div>
+      <ul class="side-menu-options">
+        <li>
+          <a href="/libraries" class="text-reset py-3 rounded-0" aria-current="page" data-bs-toggle="tooltip"
+            data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
+            <i class="fad fa-line-columns"></i>
           </a>
-        </div>
+        </li>
+      </ul>
+      <div class="side-menu-bottom">
+        <i class="fas fa-cog"></i>
+      </div>
+    </div>
 
-        <div class="sidebar-menu">
-          <ul class="nav nav-pills nav-flush flex-column text-center">
-            <li class="nav-item item-sidemenu">
-              <a href="/dashboard" class="nav-link active text-reset py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip"
-                data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
-                <i class="fad fa-line-columns"></i>
+    <div class="content-data">
+      <div class="content-data-topbar">
+        <div class="container-fluid">
+          <div id="mcbntop-item-tools" class="align-items-center hstack gap-1">
+            <div class="d-xxl-none">          
+              <a href="/" class="d-block pt-2 px-3 link-dark text-decoration-none text-center" style="height: 54px;" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
               </a>
-            </li>
-            {{!-- <li>
-              <a href="#" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
-                <i class="fad fa-books"></i>
-              </a>
-            </li>
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/authors" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
-                <i class="fad fa-book-user"></i>
-              </a>
-            </li>
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/vocabulary" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
-                <i class="fad fa-book"></i>
-              </a>
-            </li>
-            <li class="nav-item item-sidemenu">
-              <a href="/libraries/favorites" class="nav-link text-reset py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
-                <i class="fad fa-star"></i>
-              </a>
-            </li> --}}
+            </div>
+            <div class="p-2"><p class="h4 labrada">Librerías</p></div>
+            <div class="p-2 ms-auto">
+              <button id="" class="btn btn-warning">
+                <i class="fa-duotone fa-add"></i>
+              </button>
+            </div>
+            <div class="p-2">
+              <button id="" class="btn btn-warning">
+                <i class="fa-duotone fa-magnifying-glass"></i>
+              </button>
+            </div>
 
-          </ul>
-        </div>
-
-        <div class="sidebar-bottom">
-          <div class="dropdown border-top dropend">
-            <a href="#"
-              class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-              data-bs-toggle="dropdown" aria-expanded="false" data-bcup-haslogintext="no">
-              <i class="fad fa-user-cog"></i>
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Nueva conexión</a></li>
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Sincronizar</a></li>
-              <li><a class="dropdown-item" href="#" data-bcup-haslogintext="no">Ayuda</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="/settings" data-bcup-haslogintext="no">Configuración</a></li>
-            </ul>
           </div>
         </div>
       </div>
-    </aside>
-    <div id="container-body" class="container-fluid">
-      <div id="cb-navbar-top" class="pt-1 border-bottom">
-        <div class="align-items-center hstack gap-3">
-          <div class="p-2"><p class="h4 labrada">Librerías</p></div>
-          <div class="p-2 ms-auto ms-md-0">
-            <button class="btn btn-warning">
-              <i class="fad fa-plus"></i>
-            </button>
-            <button class="btn btn-warning ms-1">
-              <i class="fad fa-cog"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div id="cb-container-libraries">
-        <div id="box-info-user" class="row d-none">
+      <div class="content-data-page">
+        <div class="container-fluid">
+
+          <div class="row d-none">
             <div class="position-absolute top-50 start-50 translate-middle text-center">
               <span style="font-size: 3.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
               <p class="h4 labrada pt-2">No hay librerías aún...</p>
               <p class="labrada pt-2">Agrega alguna base de datos.</p>
             </div>
+          </div>
+
+          <div class="row" style="padding-top: 12px;">
+            <div class="col-12 col-xxl-3 pe-xxl-0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Aura H20</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Con Backup</h6>
+                  <p class="card-text">Notas y resaltados de lector pequeño.</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <a href="../libraries/1/books" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
+              <div class="card" style="">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
+                  <p class="card-text">Notas de libros técnicos.</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
+              <div class="card" style="">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa 2023</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
+                  <p class="card-text">Notas de libros técnicos.</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+
         </div>
-        <div class="row" style="padding-top: 12px;">
-          <div class="col-12 col-xxl-3 pe-xxl-0">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Aura H20</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Con Backup</h6>
-                <p class="card-text">Notas y resaltados de lector pequeño.</p>
-                <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                <a href="../libraries/1/books" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
-            <div class="card" style="">
-              <div class="card-body">
-                <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
-                <p class="card-text">Notas de libros técnicos.</p>
-                <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
-            <div class="card" style="">
-              <div class="card-body">
-                <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa 2023</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
-                <p class="card-text">Notas de libros técnicos.</p>
-                <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
-              </div>
-            </div>
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-    
       </div>
     </div>
-    <div class="navbar-top border-bottom py-1">
-      <div class="navbar-top-logo">
-          <a href="/" class="d-block p-2 link-dark text-decoration-none text-center" style="height: 57px;" data-bs-toggle="tooltip" data-bs-placement="right"
-            data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
-            <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"></span>
-            <span class="visually-hidden">Icon-only</span>
-          </a>
-      </div>
-    </div>
-    <div class="navbar-bottom">
-      <ul class="navbar-list">
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center active"><a href="#"><i class="fad fa-line-columns"></i></a></div></li>
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-books"></i></a></div></li>
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-book-user"></i></a></div></li>
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-book"></i></a></div></li>
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="#"><i class="fad fa-star"></i></a></div></li>
-      </ul>
-    </div>
-
   </main>
+
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <script src="/static/js/library.js"></script>
-
 </body>
 </html>
