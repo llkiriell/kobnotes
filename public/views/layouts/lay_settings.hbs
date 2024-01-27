@@ -4,58 +4,360 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{titulo}} | KbNotes</title>
-  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/general.css">
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
 </head>
+<style>
+  .content-data{
+    width: 100% !important;
+  }
+
+  .form-check-input:checked {
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+
+</style>
 <body>
-  <main class="d-flex flex-nowrap">
-    <aside>
-      <div class="sidevar-panel d-flex flex-column flex-shrink-0 bg-light sticky-top" style="width: 4.5rem;">
-        <a href="/" class="d-block p-3 link-dark text-decoration-none text-center border-bottom" style="height: 57px;"
-          data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only"
-          data-bcup-haslogintext="no">
+  <main>
+    <div class="side-menu">
+      <div class="side-menu-logo">
+        <a href="/" class="link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
           <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
           <span class="visually-hidden">Icon-only</span>
         </a>
-        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-          <li class="nav-item item-sidemenu">
-            <a href="/libraries/books" class="nav-link text-reset py-3 border-bottom rounded-0" aria-current="page"
-              data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
-              data-bcup-haslogintext="no">
-              <i class="fad fa-arrow-alt-from-right"></i>
-            </a>
-          </li>
-        </ul>
-        <div class=" border-top dropend">
+      </div>
+      <ul class="side-menu-options">
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books" class="text-reset py-3 rounded-0" aria-current="page"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+            data-bcup-haslogintext="no">
+            <i class="fad fa-arrow-alt-from-right"></i>
+          </a>
+        </li>
+      </ul>
+      <div class="side-menu-bottom">
           <a href="#"
             class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none"
             data-bs-toggle="" aria-expanded="false" data-bcup-haslogintext="no">
             <i class="fab fa-github"></i>
           </a>
-        </div>
       </div>
-    </aside>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xxl-12 px-0">
-          <nav class="navbar navbar-expand-lg bg-light border-bottom sticky-top" style="height: 57px;">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">{{titulo}}</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    </div>
+
+    <div class="content-data">
+
+      <div class="content-data-topbar">
+        <div class="container-fluid">
+          <div id="mcbntop-item-tools" class="align-items-center hstack gap-1">
+            <div class="d-xxl-none">          
+              <a href="/" class="d-block pt-2 px-3 link-dark text-decoration-none text-center" style="height: 54px;" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+              </a>
+            </div>
+            <div class="p-2"><p class="h4 labrada">Configuración</p></div>
+            <div class="p-2 ms-auto">
+              <button id="" class="btn btn-warning">
+                <i class="fa-solid fa-floppy-disk"></i>
               </button>
             </div>
-          </nav>
-          <div class="container-fluid">
-            {{{body}}}
           </div>
         </div>
       </div>
+
+      <div class="content-data-page">
+        <div class="container-fluid">
+
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-7">
+
+              <h4 class="labrada pt-3 px-3">Detalles</h4>
+              <hr>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-books" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Título</h6>
+                        <p class="mb-0 opacity-75">Nombre de la librería</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="text" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.title}}">
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-message-text" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Descripción</h6>
+                        <p class="mb-0 opacity-75">Detalle de la librería</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <textarea class="form-control form-control-sm" id="description" rows="4">{{libConf.description}}</textarea>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-language" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Lenguaje</h6>
+                        <p class="mb-0 opacity-75">Cambia el idioma de la aplicación</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      {{{selectLangs}}}
+                    </select>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fad fa-bookmark" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Tipos de marcadores</h6>
+                        <p class="mb-0 opacity-75">Habilita los marcadores que deseas ver</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    {{{swtichesPanel}}}
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fad fa-book" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Diccionario</h6>
+                        <p class="mb-0 opacity-75">Cambia el URL de tu diccionario</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <div class="input-group input-group-sm pt-2">
+                      <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span><input type="text" class="form-control" placeholder="dle.rae.es/" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fad fa-search" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Buscador</h6>
+                        <p class="mb-0 opacity-75">Cambia el URL del buscador</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <div class="input-group input-group-sm pt-2">
+                      <span class="input-group-text text-muted" id="inputGroup-sizing-sm">https://</span><input type="text" class="form-control" placeholder="www.google.com/search?q=" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-7">
+              <h4 class="labrada pt-3 px-3">Base de datos</h4>
+              <hr>
+              <div class="container">
+
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-sharp fa-solid fa-database" style="font-size: 32px; color:#efb300"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Tipo</h6>
+                        <p class="mb-0 opacity-75">Elige el tipo de base de datos</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      <option value="sqlite">SQLite</option>
+                      <option value="mysql">MySQL</option>
+                      <option value="postgresql">PostgreSQL</option>
+                      <option value="mongodb">MongoDB</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-input-text" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Nombre</h6>
+                        <p class="mb-0 opacity-75">Cómo se llama la base de datos</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="text" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.name_db}}">
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-server" style="font-size: 32px; color:#efb300"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Hostname</h6>
+                        <p class="mb-0 opacity-75">Dirección del servidor</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="text" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.host_db}}">
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-user-robot" style="font-size: 32px; color:#efb300"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Usuario</h6>
+                        <p class="mb-0 opacity-75">Creadencial del servidor</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="text" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.user_db}}">
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-key" style="font-size: 32px; color:#efb300"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Contraseña</h6>
+                        <p class="mb-0 opacity-75">Clave de acceso</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="password" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.pass_db}}">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-12 col-lg-7">
+              <h4 class="labrada pt-3 px-3">Copia de seguridad</h4>
+              <hr>
+              <div class="container">
+
+
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-book-copy" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Backup local</h6>
+                        <p class="mb-0 opacity-75">Habilita la copia de seguridad</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="switch_backup">
+                      <label class="form-check-label ps-2" for="switch_backup">Habilitado</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row pt-3" style="padding-bottom: 8rem;">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fa-duotone fa-folder-open" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Ruta</h6>
+                        <p class="mb-0 opacity-75">Localización de la copia</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                     <input type="text" class="form-control form-control-sm" id="title" placeholder="" value="{{libConf.path_backup}}">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          
+
+
+
+
+
+            {{!-- {{{body}}} --}}
+
+
+
+
+
+
+{{!-- 
+          <div class="row">
+            <div class="col-12">
+
+            </div>
+          </div> --}}
+
+        </div>
+      </div>
+
     </div>
+
+
   </main>
-  <script src="libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+  <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-  <script src="js/settings.js"></script>
+  <script src="/static/js/settings.js"></script>
 </body>
 </html>

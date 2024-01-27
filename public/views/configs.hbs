@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+  <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/general.css">
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
+</head>
+<style>
+  .content-data{
+    width: 100% !important;
+  }
+
+</style>
+<body>
+  <main>
+    <div class="side-menu">
+      <div class="side-menu-logo">
+        <a href="/" class="link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+          <span class="iconify" data-icon="mdi:book-open-page-variant" data-width="20" data-height="20"></span>
+          <span class="visually-hidden">Icon-only</span>
+        </a>
+      </div>
+      <ul class="side-menu-options">
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books" class="text-reset py-3 rounded-0" aria-current="page"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+            data-bcup-haslogintext="no">
+            <i class="fad fa-arrow-alt-from-right"></i>
+          </a>
+        </li>
+      </ul>
+      <div class="side-menu-bottom">
+          <a href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none"
+            data-bs-toggle="" aria-expanded="false" data-bcup-haslogintext="no">
+            <i class="fab fa-github"></i>
+          </a>
+      </div>
+    </div>
+
+    <div class="content-data">
+
+      <div class="content-data-topbar">
+        <div class="container-fluid">
+          <div id="mcbntop-item-tools" class="align-items-center hstack gap-1">
+            <div class="d-xxl-none">          
+              <a href="/" class="d-block pt-2 px-3 link-dark text-decoration-none text-center" style="height: 54px;" data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-original-title="Icon-only" data-bcup-haslogintext="no">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="30" height="30" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="mdi:book-open-page-variant" data-width="30" data-height="30"><path fill="currentColor" d="m19 2l-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5c.1 0 .15-.07.25-.07c1.35-.65 3.3-1.09 4.75-1.09c1.95 0 4.05.4 5.5 1.5c1.35-.85 3.8-1.5 5.5-1.5c1.65 0 3.35.31 4.75 1.06c.1.05.15.03.25.03c.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5c-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+              </a>
+            </div>
+            <div class="p-2"><p class="h4 labrada">Configuración</p></div>
+            <div class="p-2 ms-auto">
+              <button id="" class="btn btn-warning">
+                <i class="fa-duotone fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-data-page">
+        <div class="container-fluid">
+
+          <div class="row justify-content-center">
+            <div class="col col-lg-7">
+
+              <h5 class="labrada pt-3 px-3">Detalles</h5>
+              <hr>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fad fa-globe" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Lenguaje</h6>
+                        <p class="mb-0 opacity-75">Cambia el idioma de la aplicación</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      <option value="en">English</option>
+                      <option selected="" value="es">Español</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-6">
+                    <div class="hstack gap-3">
+                      <div class="">
+                        <i class="fad fa-bookmark" style="font-size: 32px;"></i>
+                      </div>
+                      <div class="">
+                        <h6 class="mb-0">Tipos de marcadores</h6>
+                        <p class="mb-0 opacity-75">Habilita los marcadores que deseas ver</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6 py-3 py-lg-0">
+
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-pencil pe-1"></i>Anotaciones</label>
+                    </div>  
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-highlighter pe-1"></i>Subrayados</label>
+                    </div>
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-quote-right pe-1"></i>Citas</label>
+                    </div>
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-book pe-1"></i>Vocabulario</label>
+                    </div>
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-graduation-cap pe-1"></i>Definiciones</label>
+                    </div>
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-font pe-1"></i>Palabras</label>
+                    </div>
+                    <div class="form-check form-switch py-1">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked="">
+                      <label class="form-check-label ps-2" for="flexSwitchCheckDefault"><i class="fad fa-bookmark pe-1"></i>Marcadores</label>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+            </div>
+
+          </div>
+
+          
+
+
+
+
+
+            {{!-- {{{body}}} --}}
+
+
+
+
+
+
+{{!-- 
+          <div class="row">
+            <div class="col-12">
+
+            </div>
+          </div> --}}
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+
+
+  <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="/static/js/settings.js"></script>
+</body>
+</html>

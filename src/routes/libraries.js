@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const bookController = require("../controllers/bookController");
+const configController = require("../controllers/configController");
 
 //Middleware bodyparse => json
 router.use(express.json());
@@ -21,6 +22,7 @@ router.get('/:libraryId', (req, res) => {
 });
 
 router.get('/:libraryId/books', bookController.getBooks);
+router.get('/:libraryId/settings', configController.show);
 router.get("/:libraryId/books/:idBook/bookmarks", bookController.getBookmarks);
 
 module.exports = router;
