@@ -22,6 +22,28 @@
       width: 350px !important;
     }
   }
+  
+  .card.active-library {
+    border-color: #ffc107 !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+  
+  .no-libraries {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .side-menu-options>li.active {
+    color: black !important;
+    background-color: #ffc107;
+  }
+
+  .side-menu-options>li:not(.active):hover{
+    background-color: #dee2e6;
+  }
 </style>
 <body>
 
@@ -35,15 +57,46 @@
         </a>
       </div>
       <ul class="side-menu-options">
-        <li>
+        <li class="active">
           <a href="/libraries" class="text-reset py-3 rounded-0" aria-current="page" data-bs-toggle="tooltip"
-            data-bs-placement="right" data-bs-title="Panel inicio" aria-label="Panel" data-bs-original-title="Panel" data-bcup-haslogintext="no">
+            data-bs-placement="right" data-bs-title="Librerías" aria-label="Librerías" data-bs-original-title="Librerías" data-bcup-haslogintext="no">
             <i class="fad fa-line-columns"></i>
           </a>
         </li>
+        {{#if activeLibrary}}
+        <li>
+          <a href="/libraries/{{activeLibrary.id}}/books" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros" data-bcup-haslogintext="no">
+            <i class="fad fa-books"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/{{activeLibrary.id}}/authors" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Autores" aria-label="Autores" data-bs-original-title="Autores" data-bcup-haslogintext="no">
+            <i class="fad fa-book-user"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/vocabulary" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Vocabulario" aria-label="Vocabulario" data-bs-original-title="Vocabulario" data-bcup-haslogintext="no">
+            <i class="fad fa-book"></i>
+          </a>
+        </li>
+        <li>
+          <a href="/libraries/favorites" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="Favoritos" aria-label="Favoritos" data-bs-original-title="Favoritos" data-bcup-haslogintext="no">
+            <i class="fad fa-star"></i>
+          </a>
+        </li>
+        {{/if}}
       </ul>
       <div class="side-menu-bottom">
+        {{#if activeLibrary}}
+        <a href="/libraries/{{activeLibrary.id}}/settings" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-title="Configuración" aria-label="Configuración" data-bs-original-title="Configuración" data-bcup-haslogintext="no">
         <i class="fas fa-cog"></i>
+        </a>
+        {{/if}}
       </div>
     </div>
 
@@ -59,12 +112,12 @@
             </div>
             <div class="p-2"><p class="h4 labrada">Librerías</p></div>
             <div class="p-2 ms-auto">
-              <button id="" class="btn btn-warning">
+              <a href="/dataload" class="btn btn-warning">
                 <i class="fa-duotone fa-add"></i>
-              </button>
+              </a>
             </div>
             <div class="p-2">
-              <button id="" class="btn btn-warning">
+              <button id="btn-search" class="btn btn-warning">
                 <i class="fa-duotone fa-magnifying-glass"></i>
               </button>
             </div>
@@ -75,67 +128,151 @@
       <div class="content-data-page">
         <div class="container-fluid">
 
-          <div class="row d-none">
-            <div class="position-absolute top-50 start-50 translate-middle text-center">
-              <span style="font-size: 3.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
-              <p class="h4 labrada pt-2">No hay librerías aún...</p>
-              <p class="labrada pt-2">Agrega alguna base de datos.</p>
+          {{#if libraries.length}}
+          <div id="libraries-container" class="row">
+            <!-- Librerías dinámicas -->
+            {{#each libraries}}
+            <div class="col-12 col-xxl-3 {{#unless @first}}pt-2{{else}}pt-3{{/unless}} {{#unless @first}}pt-xxl-3{{/unless}}" id="library-{{this.id}}">
+              <div class="card {{#if this.is_active}}active-library{{/if}}">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>{{this.name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">{{#if this.description}}{{this.description}}{{else}}Sin descripción{{/if}}</h6>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>{{this.bookCount}} libros con marcadores</p>
+                  <a href="/libraries/{{this.id}}/settings" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  {{#if this.is_active}}
+                  <a href="/libraries/{{this.id}}/books" class="btn btn-warning float-end"><i class="fa-duotone fa-books"></i></a>
+                  {{else}}
+                  <button class="btn btn-warning float-end btn-activate" data-id="{{this.id}}" data-name="{{this.name}}"><i class="fa-duotone fa-plug"></i></button>
+                  {{/if}}
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="row" style="padding-top: 12px;">
-            <div class="col-12 col-xxl-3 pe-xxl-0">
+            {{/each}}
+            
+            <!-- Librerías estáticas de ejemplo -->
+            <div class="col-12 col-xxl-3 pt-3">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Aura H20</h5>
                   <h6 class="card-subtitle mb-2 text-body-secondary">Con Backup</h6>
-                  <p class="card-text">Notas y resaltados de lector pequeño.</p>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>42 libros con marcadores</p>
                   <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                  <a href="../libraries/1/books" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
+            <div class="col-12 col-xxl-3 pt-2 pt-xxl-3">
               <div class="card" style="">
                 <div class="card-body">
                   <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa</h5>
                   <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
-                  <p class="card-text">Notas de libros técnicos.</p>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>28 libros con marcadores</p>
                   <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                  <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
                 </div>
               </div>
-
             </div>
-            <div class="col-12 col-xxl-3 pt-2 pt-sm-0">
+            <div class="col-12 col-xxl-3 pt-2 pt-xxl-3">
               <div class="card" style="">
                 <div class="card-body">
                   <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa 2023</h5>
                   <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
-                  <p class="card-text">Notas de libros técnicos.</p>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>15 libros con marcadores</p>
                   <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
-                  <a href="#" class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
                 </div>
               </div>
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
           </div>
+          {{else}}
+          <div id="no-libraries-container" class="row">
+            <div class="no-libraries">
+              <span style="font-size: 3.5em;"><i class="fad fa-book-reader rounded-circle" style="background-color: #ffc107; padding: .35em .4em .35em .4em;"></i></span>
+              <p class="h4 labrada pt-2">No hay librerías aún...</p>
+              <p class="labrada pt-2">Agrega alguna base de datos.</p>
+              <a href="/dataload" class="btn btn-warning mt-3">Añadir librería</a>
+            </div>
+          </div>
+          <div id="libraries-container" class="row d-none">
+            <!-- Librerías estáticas de ejemplo -->
+            <div class="col-12 col-xxl-3 pe-xxl-0 pt-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Aura H20</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Con Backup</h6>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>42 libros con marcadores</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xxl-3 pt-2 pt-xxl-3">
+              <div class="card" style="">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>28 libros con marcadores</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xxl-3 pt-2 pt-xxl-3">
+              <div class="card" style="">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fa-duotone fa-server me-2"></i>Kobo Elipsa 2023</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Sin Backup</h6>
+                  <p class="card-text"><i class="fa-duotone fa-books me-2"></i>15 libros con marcadores</p>
+                  <a href="#" class="btn btn-outline-dark border-0"><i class="fad fa-cog"></i></a>
+                  <button class="btn btn-warning float-end"><i class="fa-duotone fa-plug"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
 
         </div>
       </div>
     </div>
   </main>
+
+  <!-- Modal para activar librería -->
+  <div class="modal fade" id="activateLibraryModal" tabindex="-1" aria-labelledby="activateLibraryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="activateLibraryModalLabel"><i class="fad fa-plug me-2"></i>Activar librería</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Esta acción cambiará la librería activa de marcadores</p>
+          <p class="text-center">¿Estás seguro de que deseas activar la librería <strong id="libraryNameToActivate"></strong>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" id="confirmActivateBtn" class="btn btn-warning">Activar</button>
+        </div>
+        <div class="modal-body mx-3 d-none" id="activationLoadingIndicator">
+          <div class="d-flex align-items-center">
+            <strong>Activando librería...</strong>
+            <div class="spinner-border text-warning ms-auto" role="status" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast para mensajes -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="libraryToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="fas fa-check-circle me-2"></i><span id="toastMessage"></span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
 
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
