@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}} | KbNotes</title>
-  <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="libraries/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
 </head>
 <body>
   <main class="d-flex flex-nowrap">
@@ -24,62 +24,95 @@
           </div>
         </div>
         <div class="col-xxl-6 offset-md-3">
-          <div class="row">
-            <div class="col-12 pt-4">
-              <p class="h5">Base de datos</p>
-              <hr>
-              <div id="container_upload" class="mb-3 row align-items-center">
-                <div class="col-sm-12 col-xxl-6 d-flex gap-3">
-                  <div class="pt-1">
-                    <i class="fad fa-upload" style="font-size: 32px;"></i>
-                  </div>
-                  <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div class="d-flex gap-2 w-100 justify-content-between">
-                      <div>
-                        <h6 class="mb-0">Sube el archivo</h6>
-                        <p class="mb-0 opacity-75">Carga KoboReader.sqlite</p>
-                      </div>
-
+          <!-- Pestañas para navegar entre Librerías y Cargar Nueva -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="libraries-tab" data-bs-toggle="tab" data-bs-target="#libraries-tab-pane" type="button" role="tab" aria-controls="libraries-tab-pane" aria-selected="true">Mis Librerías</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="new-library-tab" data-bs-toggle="tab" data-bs-target="#new-library-tab-pane" type="button" role="tab" aria-controls="new-library-tab-pane" aria-selected="false">Añadir Librería</button>
+            </li>
+          </ul>
+          
+          <div class="tab-content" id="myTabContent">
+            <!-- Pestaña de Librerías existentes -->
+            <div class="tab-pane fade show active" id="libraries-tab-pane" role="tabpanel" aria-labelledby="libraries-tab" tabindex="0">
+              <div class="row mt-4">
+                <div class="col-12">
+                  <p class="h5">Mis Librerías</p>
+                  <hr>
+                  <div id="libraries-list" class="list-group mb-4">
+                    <!-- Las librerías se cargarán aquí dinámicamente -->
+                    <div class="text-center py-4" id="no-libraries-message">
+                      <p>No hay librerías configuradas.</p>
+                      <button class="btn btn-sm btn-outline-primary" id="btn-add-first-library">Añadir mi primera librería</button>
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-12 col-xxl-6">
-                  <div class="input-group input-group-sm">
-                    <input type="file" class="form-control" id="input_dataload" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                  </div>    
-                </div>
               </div>
             </div>
-            <div id="message_upload" class="col-sm-12 col-xxl-12 d-none">
-              <div class="d-flex align-items-center">
-                <strong>Cargando libros...</strong>
-                <div class="spinner-border spinner-border-sm ms-auto" role="status" aria-hidden="true"></div>
+            
+            <!-- Pestaña para añadir nueva librería -->
+            <div class="tab-pane fade" id="new-library-tab-pane" role="tabpanel" aria-labelledby="new-library-tab" tabindex="0">
+              <div class="row mt-4">
+                <div class="col-12">
+                  <p class="h5">Nueva Librería</p>
+                  <hr>
+                  <form id="new-library-form">
+                    <div class="mb-3">
+                      <label for="library-name" class="form-label">Nombre de la librería</label>
+                      <input type="text" class="form-control" id="library-name" required>
+                      <div class="form-text">Nombre descriptivo para identificar esta librería.</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="library-description" class="form-label">Descripción</label>
+                      <textarea class="form-control" id="library-description" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="input_dataload" class="form-label">Archivo de base de datos</label>
+                      <div class="input-group">
+                        <input type="file" class="form-control" id="input_dataload" accept=".sqlite" required>
+                        <button class="btn btn-outline-secondary" type="button" id="btn-browse-file">Explorar</button>
+                      </div>
+                      <div class="form-text">Selecciona el archivo KoboReader.sqlite o similar.</div>
+                    </div>
+                    <div class="mb-3" id="file-path-container" style="display: none;">
+                      <label for="file-path" class="form-label">Ruta del archivo</label>
+                      <input type="text" class="form-control" id="file-path" readonly>
+                    </div>
+                    <div id="message_upload" class="col-12 d-none mb-3">
+                      <div class="d-flex align-items-center">
+                        <strong>Verificando base de datos...</strong>
+                        <div class="spinner-border spinner-border-sm ms-auto" role="status" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="text-end">
+                      <button type="button" id="btn-verify" class="btn btn-outline-secondary me-2">Verificar</button>
+                      <button type="submit" id="btn-save-library" class="btn btn-primary" disabled>Guardar</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-
             </div>
           </div>
-          <div class="row justify-content-end">
-            <div class="col-4 text-end">
-              <button type="button" id="btn_upload" class="btn btn-outline-dark"><i class="fas fa-file-upload pe-2"></i>Cargar</button>
-            </div>
-            <div class="col-sm-12 col-xxl-12">
-              <div id="toast_upload" class="toast align-items-center text-bg-danger border-0 mt-4" role="alert" aria-live="assertive" aria-atomic="true" style="width: 100%;">
-                <div class="d-flex">
-                  <div class="toast-body">
-                    <i class="fad fa-bell-exclamation me-2"></i><span id="container_toast_upload"></span>
-                  </div>
-                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          
+          <!-- Toast para mensajes -->
+          <div class="col-12">
+            <div id="toast_upload" class="toast align-items-center text-bg-danger border-0 mt-4" role="alert" aria-live="assertive" aria-atomic="true" style="width: 100%;">
+              <div class="d-flex">
+                <div class="toast-body">
+                  <i class="fad fa-bell-exclamation me-2"></i><span id="container_toast_upload"></span>
                 </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </main>
-  <script src="libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-  <script src="js/dataload.js"></script>
+  <script src="/static/js/dataload.js"></script>
 </body>
 </html>
