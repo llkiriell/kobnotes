@@ -11,6 +11,14 @@
 
 </head>
 <style>
+  .library-badge {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
+  }
 </style>
 <body>
 
@@ -35,10 +43,17 @@
       </div>
       <ul class="side-menu-options">
         <li class="">
-          <a href="/libraries/{{libraryId}}/books" class="text-reset py-3 rounded-0" aria-current="page"
-            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librería" aria-label="Libería" data-bs-original-title="Libería"
+          <a href="/libraries" class="text-reset py-3 rounded-0" aria-current="page"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Librerías" aria-label="Librerías" data-bs-original-title="Librerías"
             data-bcup-haslogintext="no">
-            <i class="fad fa-arrow-alt-from-right"></i>
+            <i class="fad fa-line-columns"></i>
+          </a>
+        </li>
+        <li class="">
+          <a href="/libraries/{{libraryId}}/books" class="text-reset py-3 rounded-0" aria-current="page"
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Libros" aria-label="Libros" data-bs-original-title="Libros"
+            data-bcup-haslogintext="no">
+            <i class="fad fa-books"></i>
           </a>
         </li>
         <li class="">
@@ -56,7 +71,10 @@
 
       </ul>
       <div class="side-menu-bottom">
-        <i class="fas fa-cog"></i>
+        <a href="/libraries/{{libraryId}}/settings" class="text-reset py-3 rounded-0" data-bs-toggle="tooltip" data-bs-placement="right"
+          data-bs-title="Settings" aria-label="Settings" data-bs-original-title="Settings" data-bcup-haslogintext="no">
+          <i class="fas fa-cog"></i>
+        </a>
       </div>
     </div>
 
@@ -66,6 +84,7 @@
         <div class="container-fluid">
           <div id="mcbntop-item-tools" class="align-items-center hstack gap-3">
             <div class="p-2">
+              <div class="d-flex align-items-center">
               <div id="dpd_filters" class="btn-group">
                 <button class="btn btn-warning border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   data-bs-auto-close="true" aria-expanded="false">
@@ -88,7 +107,7 @@
                         class="fad fa-font pe-2"></i>Palabras</a></li>
                 </ul>
               </div>
-            
+              </div>
             </div>
             <div class="p-2 ms-auto">
               <button type="button" id="btn_orden_tipo" class="btn btn-outline-dark border-0 me-1" data-bs-toggle="button"><i class="fad fa-sort-amount-down"></i><span class="ps-2 d-none d-md-block">Descendente</span></button>
@@ -188,16 +207,13 @@
     <div class="navbar-bottom">
       <ul class="navbar-list">
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries"><i class="fad fa-line-columns"></i></a></div></li>
-        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books"><i class="fad fa-arrow-alt-from-right"></i></a></div></li>
+        <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books"><i class="fad fa-books"></i></a></div></li>
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books/{{bookBefore.VolumeID}}/bookmarks"><i class="fad fad fa-angle-up"></i></a></div></li>
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a href="/libraries/{{libraryId}}/books/{{bookAfter.VolumeID}}/bookmarks"><i class="fad fa-angle-down"></i></a></div></li>
         <li><div class="navbar-blist-item rounded-circle text-center d-flex align-items-center justify-content-center"><a id="mostrarOcultarBtn"><i class="fad fa-font"></i></a></div></li>
       </ul>
       
     </div>
-
-
-
     
   </main>
   <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -238,39 +254,8 @@
         }, 300);
       });
 
-var cajaInfoBook = document.getElementById('mcbntop-item-book-info');
-  var hrCajaInfoBook = document.getElementById('book_hr');
-  
-        // Función para manejar el evento de scroll
-  function handleScroll() {
-    var rect = hrCajaInfoBook.getBoundingClientRect();
-
-    // Si el hr es visible en la pantalla, mostrar la caja
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-
-
-      cajaInfoBook.classList.add('d-none');
-
-
-
-
-
-    } else {
-      // Si el hr no es visible, ocultar la caja
-      cajaInfoBook.classList.remove('d-none');
-    }
-
-
-
-
-
-  }
-
-  window.addEventListener('scroll', handleScroll);
-
-
+      // Ya no inicializamos tooltips aquí porque se hace en bookmarks.js
     });
   </script>
-  
 </body>
 </html>

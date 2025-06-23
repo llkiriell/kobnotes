@@ -22,8 +22,14 @@ localCache.on("set", function(key, value){
 
 module.exports = {
   getBooks: function () {
-    if (localCache.has("books")) {
-      return { "status": "OK", "data": localCache.get('books') };
+    // Obtener la conexión actual para verificar la base de datos
+    const currentConnection = db.getConnection();
+    const cacheKey = `books_${db.connectionPath}`;
+    
+    // Si hay una conexión y el caché tiene datos para esta conexión específica
+    if (currentConnection && localCache.has(cacheKey)) {
+      console.log(`\x1b[32m [cache] get '${cacheKey}' => from localCache \x1b[0m`);
+      return { "status": "OK", "data": localCache.get(cacheKey) };
     } else {
       try {
         const stmt = db.getConnection().prepare(`
@@ -57,8 +63,9 @@ module.exports = {
           bookmark.Autor = extraerAutor(bookmark.VolumeID);
           bookmark.IdEncode = encodeURIComponent(bookmark.VolumeID);
         }
-        //add the books to the cache
-        localCache.set("books", rows, 0);
+        //add the books to the cache with the specific connection path as key
+        localCache.set(cacheKey, rows, 0);
+        console.log(`\x1b[32m [cache] set '${cacheKey}' => to localCache \x1b[0m`);
 
         return { "status": "OK", "data": rows };
       } catch (error) {
@@ -194,44 +201,36 @@ module.exports = {
 
   getBooksBeforeAfter:function (VolumeID){
     let booksFiltered;
+    const cacheKey = `books_${db.connectionPath}`;
+    
     //validate books filtered to the cache
-    if (localCache.has("books")) {
-      booksFiltered = localCache.get('books');
+    if (localCache.has(cacheKey)) {
+      booksFiltered = localCache.get(cacheKey);
     } else {
       booksFiltered = this.getBooks().data;
     }
 
-    try {
-      let book_before = '';
-      let book_after = '';
-      let index_book_before = 0;
-      let index_book_after = booksFiltered.length - 1;
-      let book_title_before = 'Anterior';
-      let book_title_after = 'Siguiente';
-  
-      for (let index = 0; index < booksFiltered.length; index++) {
-  
-        if (booksFiltered[index].VolumeID == VolumeID) {
-          if (index > 0) {
-            index_book_before = index - 1;
-          }
-    
-          if (index < (booksFiltered.length - 1)) {
-            index_book_after = index + 1;
-          }
-    
-          book_before = encodeURIComponent(booksFiltered[index_book_before].VolumeID);
-          book_after = encodeURIComponent(booksFiltered[index_book_after].VolumeID);
-          
-          book_title_before = booksFiltered[index_book_before].BookTitle;
-          book_title_after = booksFiltered[index_book_after].BookTitle;
-          break;
-        }
+    let indexBookSelected = booksFiltered.findIndex(book => book.VolumeID == VolumeID);
+    let bookBefore = null;
+    let bookAfter = null;
+
+    if(indexBookSelected > 0){
+      bookBefore = booksFiltered[indexBookSelected - 1];
+      // Asegurar que el ID esté correctamente codificado
+      if (bookBefore) {
+        bookBefore.VolumeID = encodeURIComponent(bookBefore.VolumeID);
       }
-      return {"status": "ok","message":"ok", "data":[{"Order":"before","VolumeID":book_before,"BookTitle":book_title_before},{"Order":"after","VolumeID":book_after,"BookTitle":book_title_after}]};
-    } catch (error) {
-      return {"status": "error","message":error.message, "data":""};
     }
+
+    if(indexBookSelected < booksFiltered.length - 1){
+      bookAfter = booksFiltered[indexBookSelected + 1];
+      // Asegurar que el ID esté correctamente codificado
+      if (bookAfter) {
+        bookAfter.VolumeID = encodeURIComponent(bookAfter.VolumeID);
+      }
+    }
+
+    return {"status":"OK", "data":[bookBefore,bookAfter]};
   },
 
   getpokemons: async function () {

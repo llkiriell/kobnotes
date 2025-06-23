@@ -1,23 +1,95 @@
 const book = require('../models/book');
 const bookmark = require('../models/bookmark');
+const configDB = require('../data/configDB');
+const database = require('../data/database');
 const fs = require('fs');
 let lang = fs.readFileSync(".\\src\\config\\lang\\spanish.json");
 let selected_lang = JSON.parse(lang);
 
 exports.getBooks = (req, res) => {
   const libraryId = req.params.libraryId;
+  
+  // Obtener la librería por ID
+  const library = configDB.getLibrary(libraryId);
+  
+  if (!library) {
+    return res.status(404).render("error", { 
+      layout: 'main',
+      titulo: "Error",
+      message: "Librería no encontrada"
+    });
+  }
+  
+  // Cerrar cualquier conexión existente y establecer la conexión a la base de datos de la librería
+  database.closeConnection();
+  const connection = database.getConnection(library.path_db);
+  
+  if (!connection) {
+    return res.status(500).render("error", { 
+      layout: 'main',
+      titulo: "Error",
+      message: "No se pudo conectar a la base de datos de la librería"
+    });
+  }
+  
   let books = book.getBooks();
-  res.render("books", { layout: 'lay_books', titulo: `Librería Nro #${libraryId}`, books: books.data, libraryId: libraryId});
+  res.render("books", { 
+    layout: 'lay_books', 
+    titulo: `${library.name}`,
+    libraryId: libraryId, 
+    books: books.data, 
+    library: library
+  });
 };
 
 exports.getBookmarks = (req, res) => {
   const libraryId = req.params.libraryId;
+  
+  // Obtener la librería por ID
+  const library = configDB.getLibrary(libraryId);
+  
+  if (!library) {
+    return res.status(404).render("error", { 
+      layout: 'main',
+      titulo: "Error",
+      message: "Librería no encontrada"
+    });
+  }
+  
+  // Cerrar cualquier conexión existente y establecer la conexión a la base de datos de la librería
+  database.closeConnection();
+  const connection = database.getConnection(library.path_db);
+  
+  if (!connection) {
+    return res.status(500).render("error", { 
+      layout: 'main',
+      titulo: "Error",
+      message: "No se pudo conectar a la base de datos de la librería"
+    });
+  }
+  
   let book_id = decodeURIComponent(req.params.idBook);
   let book_info = book.getBookById(book_id);
   let highlights = bookmark.getBookmarksById(book_id);
-  let words =  bookmark.getWordsById(book_id).data;
-  let [bookBefore,bookAfter] = book.getBooksBeforeAfter(book_id).data;
-  res.render("bookmarks", { layout: 'lay_bookmarks', helpers: { eachListBookmarks: renderListBookmarks, showListWords: renderListWords}, titulo: "Resaltados", lang: selected_lang, libraryId: libraryId, book: book_info.data, highlights: highlights.data, bookBefore: bookBefore, bookAfter: bookAfter, words: words });
+  let words = bookmark.getWordsById(book_id).data;
+  let [bookBefore, bookAfter] = book.getBooksBeforeAfter(book_id).data;
+  
+  res.render("bookmarks", { 
+    layout: 'lay_bookmarks', 
+    helpers: { 
+      eachListBookmarks: renderListBookmarks, 
+      showListWords: renderListWords
+    }, 
+    titulo: "Resaltados", 
+    lang: selected_lang, 
+    libraryId: libraryId, 
+    book: book_info.data, 
+    highlights: highlights.data, 
+    bookBefore: bookBefore, 
+    bookAfter: bookAfter, 
+    words: words,
+    library: library
+  });
 };
 
 exports.getPoks = async (req, res) => {
