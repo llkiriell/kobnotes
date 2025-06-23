@@ -41,5 +41,7 @@ config-*.json
 # Package lock node
 package-lock.json
 
+.env
+
 
 
