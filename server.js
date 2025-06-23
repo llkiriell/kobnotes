@@ -6,8 +6,8 @@ if (process.env["NODE_ENV"] !== 'production') {
 const express = require("express");
 const expbs = require("express-handlebars");
 const app = express();
-const configuration = require('./src/models/configuration');
-const __PORT__ = process.env["NODE_ENV"] || 5100;
+const configDB = require('./src/data/configDB');
+const __PORT__ = process.env["PORT"] || 5100;
 
 const fs = require('fs');
 let lang = fs.readFileSync(".\\src\\config\\lang\\spanish.json");
@@ -29,6 +29,10 @@ app.set("view engine", ".hbs");
 app.engine(".hbs", hbs.engine);
 app.set("views", "./public/views");
 
+// Inicializar la base de datos de configuración
+const configDBConn = configDB.getConnection();
+const config = configDB.getConfig(); // Esto creará una configuración por defecto si no existe
+
 //Routes
 app.use("/api/v1", apiV1Router);
 // app.use("/libraries", library);
@@ -39,12 +43,22 @@ app.get("/dataload",(req,res) => {
   res.render('dataload',{title:'Cargar base de datos'});
 });
 
-app.get("/",(req,res) => {
-  if (configuration.exists()) {
-    res.redirect("/libraries/books");
+app.get("/webhook",(req,res) => {
+  // Verificar si hay una librería activa
+  const activeLibrary = configDB.getActiveLibrary();
+  if (activeLibrary) {
+    res.redirect("/libraries");
   } else {
     res.redirect("/dataload");
   }
 });
 
-app.listen(__PORT__, () => console.log(`[ OK ] server running localhost:${__PORT__}`));
+// Ruta principal
+app.get("/", (req, res) => {
+  res.redirect("/webhook");
+});
+
+app.listen(__PORT__, () => {
+  console.log(`[ OK ] server running localhost:${__PORT__}`);
+  console.log(`[ OK ] Configuration database initialized`);
+});

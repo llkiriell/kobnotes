@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} | KbNotes</title>
+  <link rel="stylesheet" href="/static/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/general.css">
+  <link rel="stylesheet" href="/static/libraries/fontawesome/css/all.min.css">
+</head>
+<style>
+  .error-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+</style>
+<body>
+  <div class="error-container">
+    <div class="mb-4">
+      <i class="fas fa-exclamation-triangle text-warning" style="font-size: 5rem;"></i>
+    </div>
+    <h1 class="h2 mb-3">¡Ups! Algo salió mal</h1>
+    <p class="lead mb-4">{{message}}</p>
+    <div class="mt-3">
+      <a href="/libraries" class="btn btn-warning me-2">
+        <i class="fas fa-home me-2"></i>Volver a librerías
+      </a>
+      <a href="/dataload" class="btn btn-outline-dark">
+        <i class="fas fa-database me-2"></i>Gestionar librerías
+      </a>
+    </div>
+  </div>
+  
+  <script src="/static/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+</body>
+</html> 
